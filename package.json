@@ -1,0 +1,36 @@
+{
+  "name": "fonts-loader",
+  "version": "1.0.0",
+  "description": "A webpack loader to generate all your fonts in one go.",
+  "main": "./index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Gilberto Tomasone",
+  "homepage": "https://github.com/GilbertoTomasone/webpack-fonts-loader",
+  "repository": "git@github.com:GilbertoTomasone/webpack-fonts-loader.git",
+  "keywords": [
+    "webpack",
+    "webpack-loader",
+    "font-face",
+    "fonts",
+    "icon-font",
+    "icons",
+    "ttf",
+    "eot",
+    "woff",
+    "woff2",
+    "svg"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "glob": "^7.1.6",
+    "loader-utils": "^1.2.3",
+    "lodash": "^4.17.15",
+    "mkdirp": "^1.0.3",
+    "path": "^0.12.7",
+    "schema-utils": "^2.6.4",
+    "url": "^0.11.0"
+  }
+}

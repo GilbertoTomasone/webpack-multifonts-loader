@@ -1,0 +1,24 @@
+{
+  "type": "object",
+  "properties": {
+    "icons": {
+      "description": "Options for generating icons",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": true
+        }
+      ]
+    },
+    "fonts": {
+      "description": "Options for generating fonts",
+      "anyOf": [
+        {
+          "type": "object",
+          "additionalProperties": true
+        }
+      ]
+    },
+    "additionalProperties": false
+  }
+}
