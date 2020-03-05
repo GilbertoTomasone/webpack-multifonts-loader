@@ -4,7 +4,7 @@
   "description": "A webpack loader to generate all your fonts in one go.",
   "main": "./index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "semistandard"
   },
   "author": "Gilberto Tomasone",
   "homepage": "https://github.com/GilbertoTomasone/webpack-fonts-loader",
@@ -32,5 +32,13 @@
     "path": "^0.12.7",
     "schema-utils": "^2.6.4",
     "url": "^0.11.0"
+  },
+  "devDependencies": {
+    "semistandard": "^14.2.0"
+  },
+  "semistandard": {
+    "ignore": [
+      "**/node_modules/"
+    ]
   }
 }
