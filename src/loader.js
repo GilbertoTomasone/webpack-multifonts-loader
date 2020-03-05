@@ -69,8 +69,11 @@ function loader (content, map, meta) {
    * fontfaceTemplate:
    * inputPath:
    * outputPath:
+   * fontFilename:
    * cssDest:
+   * cssFilename:
    * scssDest:
+   * scssFilename:
   ============================================================================= */
   const fontfaceTemplate = assetConfig.fonts.fontfaceTemplate || path.resolve(__dirname, '../templates', 'fontface.hbs');
   let inputPath = assetConfig.fonts.inputPath || false;
