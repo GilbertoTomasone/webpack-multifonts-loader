@@ -7,12 +7,7 @@ const path = require('path');
 const mkdirp = require('mkdirp');
 const url = require('url');
 const webfontsGenerator = require('@vusion/webfonts-generator');
-const {
-  addDependencies,
-  generateFontFilename,
-  emitFonts,
-  generateFontfacesCSS
-} = require('./utils');
+const utils = require('./utils');
 
 const schema = require('./options.json');
 
@@ -47,7 +42,7 @@ function loader (content, map, meta) {
 
   /* Load icons
   ============================================================================= */
-  const icons = addDependencies(
+  const icons = utils.addDependencies(
     this,
     assetConfig.icons.files,
     assetConfig.icons.inputPath
@@ -55,7 +50,7 @@ function loader (content, map, meta) {
 
   /* Load fonts
   ============================================================================= */
-  const fonts = addDependencies(
+  const fonts = utils.addDependencies(
     this,
     assetConfig.fonts.files,
     assetConfig.fonts.inputPath
@@ -102,11 +97,11 @@ function loader (content, map, meta) {
   if (inputPath !== false) {
     /* Emit fonts files
     ============================================================================= */
-    const fontsDetail = emitFonts(this, fonts.filesFound, inputPath, outputPath, fontFilename);
+    const fontsDetail = utils.emitFonts(this, fonts.filesFound, inputPath, outputPath, fontFilename);
 
     /* Generate the fontfaces CSS
     ============================================================================= */
-    fontfacesCSS = generateFontfacesCSS(fontsDetail, fontfaceTemplate);
+    fontfacesCSS = utils.generateFontfacesCSS(fontsDetail, fontfaceTemplate);
 
     /* Write to disk the SCSS file (OPTIONAL)
     ============================================================================= */
@@ -202,7 +197,7 @@ function loader (content, map, meta) {
     /* Emit the font files to the output Webpack destination
     ============================================================================= */
     formats.forEach((format) => {
-      const filename = generateFontFilename(
+      const filename = utils.generateFontFilename(
         this,
         webfontsOptions.fontName,
         webfontsOptions.fileName,
