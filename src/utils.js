@@ -9,7 +9,7 @@ const _ = require('lodash');
 const crypto = require('crypto');
 const handlebars = require('handlebars');
 
-/* Emports
+/* Exports
 ============================================================================= */
 module.exports = {
   addDependencies,
