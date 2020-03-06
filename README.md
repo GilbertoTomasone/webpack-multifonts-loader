@@ -1,5 +1,6 @@
 [![npm](https://img.shields.io/npm/v/multifonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/multifonts-loader)
 [![npm](https://img.shields.io/npm/dm/multifonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/multifonts-loader)
+[![Travis](https://img.shields.io/travis/gilbertotomasone/webpack-multifonts-loader.svg?style=flat-square)](https://travis-ci.org/gilbertotomasone/webpack-multifonts-loader)
 [![license](https://img.shields.io/github/license/gilbertotomasone/webpack-multifonts-loader.svg?style=flat-square)](https://github.com/GilbertoTomasone/webpack-multifonts-loader/blob/master/LICENSE)
 
 # Webpack Multifonts Loader
