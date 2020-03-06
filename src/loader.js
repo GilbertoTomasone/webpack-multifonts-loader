@@ -5,7 +5,6 @@ const validateOptions = require('schema-utils');
 const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
-const url = require('url');
 const webfontsGenerator = require('@vusion/webfonts-generator');
 const utils = require('./utils');
 
@@ -221,7 +220,7 @@ function loader (content, map, meta) {
         format
       );
       const fontFilename = webfontsOptions.dest.concat(filename);
-      urls[format] = url.resolve(webfontsOptions.publicPath, fontFilename.replace(/\\/g, '/'));
+      urls[format] = webfontsOptions.publicPath.concat(fontFilename.replace(/\\/g, '/'));
       this.emitFile(fontFilename, result[format]);
     });
 

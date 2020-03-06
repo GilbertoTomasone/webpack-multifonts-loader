@@ -39,8 +39,7 @@
   },
   "semistandard": {
     "ignore": [
-      "**/node_modules/",
-      "**/src/"
+      "**/node_modules/"
     ]
   }
 }

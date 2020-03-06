@@ -4,7 +4,6 @@ const loaderUtils = require('loader-utils');
 const fs = require('fs');
 const path = require('path');
 const glob = require('glob');
-const url = require('url');
 const _ = require('lodash');
 const crypto = require('crypto');
 const handlebars = require('handlebars');
@@ -130,7 +129,7 @@ function emitFonts (loader, fonts, inputPath, outputPath, filename) {
       fontExt
     );
     const fontURI = outputPath.concat(fontPath).concat(fontFilename);
-    const fontURL = url.resolve('/', fontURI.replace(/\\/g, '/'));
+    const fontURL = ('/').concat(fontURI.replace(/\\/g, '/'));
     // Aggregate font metadata
     fontsDetail[fontName] = fontsDetail[fontName] || { name: '', types: [], urls: [] };
     fontsDetail[fontName].name = fontName;
