@@ -176,9 +176,25 @@ function loader (content, map, meta) {
 
   // Add trailing slash to paths
   if (webfontsOptions.dest.substr(-1) !== '/') webfontsOptions.dest += '/';
-  if (webfontsOptions.publicPath.substr(-1) !== '/') webfontsOptions.publicPath += '/';
   if (webfontsOptions.cssDest !== false && webfontsOptions.cssDest.substr(-1) !== '/') webfontsOptions.cssDest += '/';
   if (webfontsOptions.scssDest !== false && webfontsOptions.scssDest.substr(-1) !== '/') webfontsOptions.scssDest += '/';
+
+  // Calculate publicPath
+  var publicPath;
+  if (typeof webfontsOptions.publicPath === 'string') {
+    if (webfontsOptions.publicPath === '' || webfontsOptions.publicPath.endsWith('/')) {
+      publicPath = webfontsOptions.publicPath;
+    } else {
+      publicPath = `${webfontsOptions.publicPath}/`;
+    }
+  } else {
+    if (typeof webfontsOptions.publicPath === 'function') {
+      publicPath = webfontsOptions.publicPath(this.resourcePath, this.rootContext);
+    } else {
+      publicPath = this._compilation.outputOptions.publicPath || '/';
+    }
+  }
+  webfontsOptions.publicPath = publicPath;
 
   // Update files dependency
   this.addDependency.bind(webfontsOptions.cssTemplate);
