@@ -160,7 +160,7 @@ function loader (content, map, meta) {
     writeFiles: false, /* always keep it to false */
     dest: assetConfig.icons.outputPath || 'iconfont', /* relative to the Webpack output folder */
     publicPath: assetConfig.icons.publicPath || '/',
-    /* extension */cssFilename: assetConfig.icons.cssFilename || false,
+    /* extension */cssFilename: assetConfig.icons.cssFilename || 'iconfont',
     cssDest: assetConfig.icons.cssDest || false,
     cssTemplate: assetConfig.icons.cssTemplate || cssTemplate,
     /* extension */scssFilename: assetConfig.icons.scssFilename || 'iconfont',

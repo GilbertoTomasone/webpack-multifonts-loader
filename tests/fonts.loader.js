@@ -38,10 +38,10 @@ module.exports = {
     publicPath: '/',
     fontName: 'IconFont',
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
-    cssFilename: 'iconfont',
     cssDest: path.resolve(__dirname, 'styles/iconfont'),
-    scssFilename: 'iconfont',
+    cssFilename: 'iconfont',
     scssDest: path.resolve(__dirname, 'styles/iconfont'),
+    scssFilename: 'iconfont',
     classSelector: 'icon',
     classPrefix: 'icon-'
   }
