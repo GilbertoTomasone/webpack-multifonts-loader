@@ -18,7 +18,7 @@ The loader will generate all the necessary supporting files to use the fonts.
 ```html
 <span class="font-[FONT_FILE_NAME]"></span>
 
-<span class="icon icon-[FONT_FILE_NAME]"></span>
+<span class="icon icon-[SVG_FILE_NAME]"></span>
 ```
 
 ### Import the scss files and use the mixins
