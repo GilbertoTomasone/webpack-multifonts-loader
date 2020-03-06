@@ -3,12 +3,13 @@ const path = require('path');
 module.exports = {
   fonts: {
     files: [
-      // '**/*.+(woff|woff2|eot|ttf|otf)',
+      // '**/*.+(woff|woff2|eot|ttf|otf|svg)',
       '**/*.woff',
       '**/*.woff2',
       '**/*.eot',
       '**/*.ttf',
-      '**/*.otf'
+      '**/*.otf',
+      '**/*.svg'
     ],
     inputPath: path.resolve(__dirname, 'assets/fonts'),
     outputPath: 'fonts',
@@ -35,7 +36,7 @@ module.exports = {
     types: ['eot', 'woff', 'woff2', 'ttf', 'svg'],
     order: ['eot', 'woff', 'woff2', 'ttf', 'svg'],
     publicPath: '/',
-    font: 'IconFont',
+    fontName: 'IconFont',
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssFilename: 'iconfont',
     cssDest: path.resolve(__dirname, 'styles/iconfont'),

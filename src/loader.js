@@ -156,7 +156,7 @@ function loader (content, map, meta) {
     files: icons.filesFound,
     types: assetConfig.icons.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
     order: assetConfig.icons.order || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
-    fontName: assetConfig.icons.font || 'IconFont',
+    fontName: assetConfig.icons.fontName || 'IconFont',
     fileName: assetConfig.icons.fontFilename || '[fontname].[hash].[ext]',
     writeFiles: false, /* always keep it to false */
     dest: assetConfig.icons.outputPath || 'iconfont', /* relative to the Webpack output folder */

@@ -5,7 +5,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "rimraf ./dist && rimraf ./styles && ava -v ./ava.js && webpack --env.mode=production"
+    "test-build": "rimraf ./dist && rimraf ./styles && webpack --env.mode=production && ava -v ./ava.js",
+    "test-dev": "rimraf ./dist && rimraf ./styles && webpack --env.mode=development && ava -v ./ava.js"
   },
   "author": "",
   "license": "MIT",
