@@ -41,6 +41,8 @@ module.exports = {
     cssFilename: 'iconfont',
     cssDest: path.resolve(__dirname, 'styles/iconfont'),
     scssFilename: 'iconfont',
-    scssDest: path.resolve(__dirname, 'styles/iconfont')
+    scssDest: path.resolve(__dirname, 'styles/iconfont'),
+    classSelector: 'icon',
+    classPrefix: 'icon-'
   }
 };

@@ -165,7 +165,11 @@ function loader (content, map, meta) {
     cssTemplate: assetConfig.icons.cssTemplate || cssTemplate,
     /* extension */scssFilename: assetConfig.icons.scssFilename || 'iconfont',
     /* extension */scssDest: assetConfig.icons.scssDest || 'iconfont',
-    /* extension */scssTemplate: assetConfig.icons.scssTemplate || scssTemplate
+    /* extension */scssTemplate: assetConfig.icons.scssTemplate || scssTemplate,
+    templateOptions: {
+      baseSelector: assetConfig.classSelector || 'icon',
+      classPrefix: 'classPrefix' in assetConfig ? assetConfig.classPrefix : 'icon-'
+    },
   };
 
   // Override options with the one provided by the loader webpack main configuration
