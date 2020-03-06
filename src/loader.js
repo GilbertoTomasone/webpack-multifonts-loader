@@ -69,7 +69,8 @@ function loader (content, map, meta) {
    * scssDest:
    * scssFilename:
   ============================================================================= */
-  const fontfaceTemplate = assetConfig.fonts.fontfaceTemplate || path.resolve(__dirname, '../templates', 'fontface.hbs');
+  const fontfaceTemplateCSS = assetConfig.fonts.fontfaceTemplateCSS || path.resolve(__dirname, '../templates', 'fontface-css.hbs');
+  const fontfaceTemplateSCSS = assetConfig.fonts.fontfaceTemplateSCSS || path.resolve(__dirname, '../templates', 'fontface-scss.hbs');
   let inputPath = assetConfig.fonts.inputPath || false;
   let outputPath = assetConfig.fonts.outputPath || 'fonts';
   let fontFilename = assetConfig.fonts.fontFilename || '[fontname].[hash].[ext]';
@@ -90,17 +91,20 @@ function loader (content, map, meta) {
   if (scssDest !== false && scssDest.substr(-1) !== '/') scssDest += '/';
 
   // Update files dependency
-  this.addDependency.bind(fontfaceTemplate);
+  this.addDependency.bind(fontfaceTemplateCSS);
+  this.addDependency.bind(fontfaceTemplateSCSS);
 
   let fontfacesCSS = '';
+  let fontfacesSCSS = '';
   if (inputPath !== false) {
     /* Emit fonts files
     ============================================================================= */
     const fontsDetail = utils.emitFonts(this, fonts.filesFound, inputPath, outputPath, fontFilename);
 
-    /* Generate the fontfaces CSS
+    /* Generate the fontfaces CSS and SCSS
     ============================================================================= */
-    fontfacesCSS = utils.generateFontfacesCSS(fontsDetail, fontfaceTemplate);
+    fontfacesCSS = utils.generateFontfaces(fontsDetail, fontfaceTemplateCSS);
+    fontfacesSCSS = utils.generateFontfaces(fontsDetail, fontfaceTemplateSCSS);
 
     /* Write to disk the SCSS file (OPTIONAL)
     ============================================================================= */
@@ -108,7 +112,7 @@ function loader (content, map, meta) {
       // Create the destination folder
       mkdirp.sync(scssDest);
       const fontsScssFilename = scssDest.concat(`${scssFilename}.scss`);
-      fs.writeFileSync(fontsScssFilename, fontfacesCSS);
+      fs.writeFileSync(fontsScssFilename, fontfacesSCSS);
     }
 
     /* Write to disk the CSS file (OPTIONAL)

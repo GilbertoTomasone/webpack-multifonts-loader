@@ -15,7 +15,7 @@ module.exports = {
   getContext,
   emitFonts,
   generateFontFilename,
-  generateFontfacesCSS,
+  generateFontfaces,
   makeFontSrc
 };
 
@@ -143,8 +143,8 @@ function emitFonts (loader, fonts, inputPath, outputPath, filename) {
 
 /* Generate the fontface from the fonts detail
 ============================================================================= */
-function generateFontfacesCSS (fontsDetail, fontfaceTemplate) {
-  const fontfaces = [];
+function generateFontfaces (fontsDetail, fontfaceTemplate) {
+  const fonts = [];
   Object.keys(fontsDetail).forEach((fontName) => {
     const font = fontsDetail[fontName];
     const fontSrc = makeFontSrc({
@@ -156,12 +156,13 @@ function generateFontfacesCSS (fontsDetail, fontfaceTemplate) {
       fontName: font.name,
       src: fontSrc
     };
-    const source = fs.readFileSync(fontfaceTemplate, 'utf8');
-    const fontface = handlebars.compile(source)(ctx);
-    fontfaces.push(fontface);
+    fonts.push(ctx);
   });
-  if (fontfaces.length > 0) {
-    return fontfaces.join('\n');
+  if (fonts.length > 0) {
+    const template = fs.readFileSync(fontfaceTemplate, 'utf8');
+    return handlebars.compile(template)({
+      fonts: fonts
+    });
   }
   return '';
 }

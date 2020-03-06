@@ -3,7 +3,7 @@ var fs = require('fs');
 var glob = require('glob');
 
 test('check fonts creation', function (t) {
-  const expected = 28;
+  const expected = 40;
   let count = 0;
   glob.sync('**/*.+(woff|woff2|eot|ttf|otf|svg)', {
     cwd: './dist/fonts'

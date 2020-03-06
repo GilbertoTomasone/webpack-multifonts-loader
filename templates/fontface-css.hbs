@@ -1,0 +1,9 @@
+{{#each fonts}}
+@font-face {
+	font-family: "{{fontName}}";
+	src: {{{src}}};
+}
+.font-{{fontName}} {
+	font-family: "{{fontName}}";
+}
+{{/each}}

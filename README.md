@@ -7,6 +7,36 @@
 
 Loader for webpack to generate **fontfaces** from font families and **iconfonts** from svgs using <a href="https://github.com/vusion/webfonts-generator">webfonts-generator</a>.
 
+## Usage
+
+The loader will generate all the necessary supporting files to use the fonts.
+
+### Inject classes in the markup
+
+#### `*.html`
+
+```html
+<span class="font-[FONT_FILE_NAME]"></span>
+
+<span class="icon icon-[FONT_FILE_NAME]"></span>
+```
+
+### Import the scss files and use the mixins
+
+#### `*.sass`
+
+```sass
+@import 'iconfont/iconfont'
+@import 'fonts/fonts'
+
+body
+  font-family: "FONT_FILE_NAME"
+  @include font('FONT_FILE_NAME')
+
+span
+  @include webfont-icon('SVG_FILE_NAME')
+```
+
 ## Installation
 
 ```

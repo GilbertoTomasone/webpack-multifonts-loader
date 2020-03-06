@@ -1,0 +1,10 @@
+{{#each fonts}}
+@font-face {
+	font-family: "{{fontName}}";
+	src: {{{src}}};
+}
+{{/each}}
+
+@mixin font($name) {
+	font-family: $name;
+}
