@@ -18,12 +18,12 @@ module.exports = (env) => {
     module: {
       rules: [
         {
-          test: /fonts\.loader\.js/,
+          test: /multifonts\.loader\.js/,
           use: [
             MiniCssExtractPlugin.loader,
             'css-loader',
             {
-              loader: 'fonts-loader',
+              loader: 'multifonts-loader',
               options: {
                 icons: {
                   fontFilename: isDevelopment
@@ -57,7 +57,7 @@ module.exports = (env) => {
     },
     resolveLoader: {
       alias: {
-        'fonts-loader': path.resolve(__dirname, '../../fonts-loader')
+        'multifonts-loader': path.resolve(__dirname, '../../multifonts-loader')
       }
     }
   };

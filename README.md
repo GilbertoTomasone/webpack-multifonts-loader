@@ -1,4 +1,4 @@
-# Webpack Fonts Loader
+# Webpack Multifonts Loader
 
 Loader for webpack to generate **fontfaces** from font families and **iconfonts** from svgs using <a href="https://github.com/vusion/webfonts-generator">webfonts-generator</a>.
 
@@ -12,17 +12,17 @@ $ npm install webpack-fonts-loader
 
 ### Webpack Rule
 
-Chain the fonts-loader with the css-loader and MiniCssExtractPlugin loader to 
+Chain the multifonts-loader with the css-loader and MiniCssExtractPlugin loader to 
 generate the CSS style directly into the Webpack default output path.
 
 ```javascript
 {
-  test: /fonts\.loader\.js/,
+  test: /multifonts\.loader\.js/,
   use: [
     MiniCssExtractPlugin.loader,
     'css-loader',
     {
-      loader: 'fonts-loader',
+      loader: 'multifonts-loader',
       options: {
         icons: {
           fontFilename: isDevelopment
@@ -88,7 +88,7 @@ Include the configuration file into your app.
 `app.js`
 
 ```javascript
-require('fonts.loader');
+require('multifonts.loader');
 ```
 
 ## Configuration

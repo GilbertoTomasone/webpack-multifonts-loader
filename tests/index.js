@@ -1,1 +1,1 @@
-require('./fonts.loader');
+require('./multifonts.loader');

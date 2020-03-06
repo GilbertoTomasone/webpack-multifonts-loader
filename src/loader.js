@@ -169,7 +169,7 @@ function loader (content, map, meta) {
     templateOptions: {
       baseSelector: assetConfig.classSelector || 'icon',
       classPrefix: 'classPrefix' in assetConfig ? assetConfig.classPrefix : 'icon-'
-    },
+    }
   };
 
   // Override options with the one provided by the loader webpack main configuration
