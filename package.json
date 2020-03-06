@@ -7,7 +7,7 @@
     "test-build": "semistandard && ./test-build.sh",
     "test-dev": "semistandard && ./test-dev.sh"
   },
-  "author": "Gilberto Tomasone",
+  "author": "Gilberto Tomasone <gilberto.tomasone@gmail.com>",
   "homepage": "https://github.com/GilbertoTomasone/webpack-fonts-loader",
   "repository": "git@github.com:GilbertoTomasone/webpack-fonts-loader.git",
   "keywords": [
