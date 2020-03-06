@@ -1,7 +1,9 @@
 # Webpack Fonts Loader
+
 Loader for webpack to generate **fontfaces** from font families and **iconfonts** from svgs using <a href="https://github.com/vusion/webfonts-generator">webfonts-generator</a>.
 
 ## Installation
+
 ```
 $ npm install webpack-fonts-loader
 ```
@@ -9,6 +11,7 @@ $ npm install webpack-fonts-loader
 ## Setup
 
 ### Webpack Rule
+
 Chain the fonts-loader with the css-loader and MiniCssExtractPlugin loader to 
 generate the CSS style directly into the Webpack default output path.
 
@@ -56,7 +59,8 @@ options: {
 
 #### `icons`, Object
 
-##### fontFilename
+#### fontFilename
+
 The name of the generated iconfont file.
 
 *Example:*
@@ -67,7 +71,8 @@ The name of the generated iconfont file.
 
 #### `fonts`, Object
 
-##### fontFilename
+#### fontFilename
+
 The name of the generated font files.
 
 *Example:*
@@ -77,6 +82,7 @@ The name of the generated font files.
 ```
 
 ## Integration
+
 Include the configuration file into your app.
 
 `app.js`
@@ -86,9 +92,11 @@ require('fonts.loader');
 ```
 
 ## Configuration
+
 The configuration file defines two main sections: 
 
 #### fonts
+
 Responsible to locate and process the font families 
    to generate the respective fontfaces.
  
@@ -96,6 +104,7 @@ Optionally, you can decide to generate the fontfaces CSS and/or the SCSS
 files to a specified location for you to include in your application.
    
 #### icons
+
 Responsible to locate and process the svg files
     to generate the respective iconfont.
     
@@ -156,6 +165,7 @@ module.exports = {
 ## Options
 
 ### fonts
+
 ```
 fonts: {
     files: [
@@ -176,7 +186,8 @@ fonts: {
     scssFilename: 'fonts'
 }
 ```
-#####files
+####files
+
 Required: `true`
 
 Type: `Array`
@@ -187,7 +198,8 @@ Default: `undefined`
 The <a href="https://www.npmjs.com/package/glob">Glob</a> pattern to use to find
 the font files to process.
 
-#####inputPath
+####inputPath
+
 Required: `true`
 
 Type: `String`
@@ -196,7 +208,8 @@ Default: `undefined`
 
 The context for the <a href="https://www.npmjs.com/package/glob">Glob</a> pattern.
 
-#####outputPath
+####outputPath
+
 Required: `false`
 
 Type: `String`
@@ -206,7 +219,8 @@ Default: `iconfont/`
 The path relative to the default Webpack output folder where to save 
 the fonts files.
 
-#####fontFilename
+####fontFilename
+
 See [webfonts-loader#filename-string](https://github.com/jeerbl/webfonts-loader#filename-string)
 
 The generated font file names. These elements can be used:
@@ -218,7 +232,8 @@ The generated font file names. These elements can be used:
 
 This option can be also configured globally in the webpack loader options.
 
-#####cssDest
+####cssDest
+
 Required: `false`
 
 Type: `String`
@@ -229,7 +244,8 @@ The absolute path to use to save a copy of the CSS file being generated.
 
 If set the CSS file will be generated at the specified destination.
 
-#####cssFilename
+####cssFilename
+
 Required: `false`
 
 Type: `String`
@@ -238,7 +254,8 @@ Default: `iconfont`
 
 The name CSS file being generated.
 
-#####scssDest
+####scssDest
+
 Required: `false`
 
 Type: `String`
@@ -249,7 +266,8 @@ The absolute path to use to save a copy of the SCSS file being generated.
 
 If set the SCSS file will be generated at the specified destination.
 
-#####scssFilename
+####scssFilename
+
 Required: `false`
 
 Type: `String`
@@ -259,6 +277,7 @@ Default: `iconfont`
 The name SCSS file being generated.
 
 ### icons
+
 ```
 icons: {
     files: [
@@ -287,7 +306,8 @@ icons: {
     classPrefix: 'icon-'
 }
 ```
-#####files
+####files
+
 Required: `true`
 
 Type: `Array`
@@ -297,7 +317,8 @@ Default: `undefined`
 The <a href="https://www.npmjs.com/package/glob">Glob</a> pattern to use to find
 the svg files to process.
 
-#####inputPath
+####inputPath
+
 Required: `true`
 
 Type: `String`
@@ -306,7 +327,8 @@ Default: `undefined`
 
 The context for the <a href="https://www.npmjs.com/package/glob">Glob</a> pattern.
 
-#####outputPath
+####outputPath
+
 Required: `false`
 
 Type: `String`
@@ -316,19 +338,24 @@ Default: `fonts/`
 The path relative to the default Webpack output folder where to save 
 the svg iconfont files.
 
-#####types
+####types
+
 See [webfonts-generator#types](https://github.com/vusion/webfonts-generator/#types)
 
-#####order
+####order
+
 See [webfonts-generator#order](https://github.com/vusion/webfonts-generator/#order)
 
-#####publicPath
+####publicPath
+
 See [webfonts-loader#publicpath-string](https://github.com/jeerbl/webfonts-loader#publicpath-string)
 
-#####fontName
+####fontName
+
 See [webfonts-generator#fontname](https://github.com/vusion/webfonts-generator#fontname)
 
-#####fontFilename
+####fontFilename
+
 See [webfonts-loader#filename-string](https://github.com/jeerbl/webfonts-loader#filename-string)
 
 The generated font file names. These elements can be used:
@@ -340,7 +367,8 @@ The generated font file names. These elements can be used:
 
 This option can be also configured globally in the webpack loader options.
 
-#####cssDest
+####cssDest
+
 Required: `false`
 
 Type: `String`
@@ -351,7 +379,8 @@ The absolute path to use to save a copy of the CSS file being generated.
 
 If set the CSS file will be generated at the specified destination.
 
-#####cssFilename
+####cssFilename
+
 Required: `false`
 
 Type: `String`
@@ -360,7 +389,8 @@ Default: `fonts`
 
 The name CSS file being generated.
 
-#####scssDest
+####scssDest
+
 Required: `false`
 
 Type: `String`
@@ -371,7 +401,8 @@ The absolute path to use to save a copy of the SCSS file being generated.
 
 If set the SCSS file will be generated at the specified destination.
 
-#####scssFilename
+####scssFilename
+
 Required: `false`
 
 Type: `String`
@@ -380,21 +411,26 @@ Default: `fonts`
 
 The name SCSS file being generated.
 
-#####classSelector
+####classSelector
+
 See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
-#####classPrefix
+####classPrefix
+
 See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
 ## Tests
+
 ```
 $ npm run test-build
 $ npm run test-dev
 ```
 
 ## References & Shout-out
+
 * Inpired by [webfonts-loader](https://github.com/jeerbl/webfonts-loader)
 * Made possible by [webfonts-generator](https://github.com/vusion/webfonts-generator)
 
 ## Licence
+
 Public domain, see the `LICENCE` file.
