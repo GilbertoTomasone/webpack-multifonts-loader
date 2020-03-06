@@ -15,7 +15,7 @@ $ npm install webpack-fonts-loader
 Chain the fonts-loader with the css-loader and MiniCssExtractPlugin loader to 
 generate the CSS style directly into the Webpack default output path.
 
-```
+```javascript
 {
   test: /fonts\.loader\.js/,
   use: [
@@ -42,7 +42,7 @@ generate the CSS style directly into the Webpack default output path.
 
 ### Loader Options
 
-```
+```javascript
 options: {
     icons: {
       fontFilename: isDevelopment
@@ -64,7 +64,7 @@ options: {
 The name of the generated iconfont file.
 
 *Example:*
-```
+```javascript
 [fontname].[chunkhash].[ext]?[hash]
 [chunkhash].[ext]?[hash]
 ```
@@ -76,7 +76,7 @@ The name of the generated iconfont file.
 The name of the generated font files.
 
 *Example:*
-```
+```javascript
 [fontname].[chunkhash].[ext]?[hash]
 [chunkhash].[ext]?[hash]
 ```
@@ -87,7 +87,7 @@ Include the configuration file into your app.
 
 `app.js`
 
-```
+```javascript
 require('fonts.loader');
 ```
 
@@ -111,7 +111,7 @@ Responsible to locate and process the svg files
 Optionally, you can decide to generate the iconfont CSS and/or the SCSS 
 files to a specified location for you to include in your application. 
 
-```
+```javascript
 const path = require('path');
 
 module.exports = {
@@ -166,7 +166,7 @@ module.exports = {
 
 ### fonts
 
-```
+```javascript
 fonts: {
     files: [
       // '**/*.+(woff|woff2|eot|ttf|otf|svg)',
@@ -278,7 +278,7 @@ The name SCSS file being generated.
 
 ### icons
 
-```
+```javascript
 icons: {
     files: [
       '**/*.svg',
