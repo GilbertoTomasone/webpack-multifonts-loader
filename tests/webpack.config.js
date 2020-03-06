@@ -57,7 +57,7 @@ module.exports = (env) => {
     },
     resolveLoader: {
       alias: {
-        'multifonts-loader': path.resolve(__dirname, '../../multifonts-loader')
+        'multifonts-loader': path.resolve(__dirname, '../index')
       }
     }
   };
