@@ -1,3 +1,7 @@
+[![npm](https://img.shields.io/npm/v/multifonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/multifonts-loader)
+[![npm](https://img.shields.io/npm/dm/multifonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/multifonts-loader)
+[![license](https://img.shields.io/github/license/gilbertotomasone/webpack-multifonts-loader.svg?style=flat-square)](https://github.com/GilbertoTomasone/webpack-multifonts-loader/blob/master/LICENSE)
+
 # Webpack Multifonts Loader
 
 Loader for webpack to generate **fontfaces** from font families and **iconfonts** from svgs using <a href="https://github.com/vusion/webfonts-generator">webfonts-generator</a>.
