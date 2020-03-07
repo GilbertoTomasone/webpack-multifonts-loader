@@ -13,15 +13,14 @@ $webfont-icons: map-merge($webfont-icons, (
 	{{/each}}
 ));
 
-@mixin webfont-icon($name) {
- 	line-height: 1;
-
+@mixin {{mixinName}}($name, $position: before, $align: top, $size: inherit, $weight: normal, $style: normal) {
  	$icon: map-get($webfont-icons, $name);
- 	&:before {
+ 	&:#{$position} {
  		font-family: nth($icon, 1) !important;
- 		font-style: normal;
- 		font-weight: normal !important;
- 		vertical-align: top;
+ 		font-size: unquote($size);
+ 		font-style: unquote($style);
+ 		font-weight: unquote($weight) !important;
+ 		vertical-align: unquote($align);
  		content: nth($icon, 2);
  	}
- }
+}

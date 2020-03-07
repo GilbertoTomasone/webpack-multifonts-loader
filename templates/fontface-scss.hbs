@@ -5,6 +5,8 @@
 }
 {{/each}}
 
-@mixin font($name) {
+@mixin {{mixinName}}($name, $weight: normal, $style: normal) {
 	font-family: $name;
+	font-weight: unquote($weight);
+	font-style: unquote($style);
 }

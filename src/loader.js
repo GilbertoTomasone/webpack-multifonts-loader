@@ -78,6 +78,10 @@ function loader (content, map, meta) {
   const cssFilename = assetConfig.fonts.cssFilename || 'fonts';
   let scssDest = assetConfig.fonts.scssDest || false;
   const scssFilename = assetConfig.fonts.scssFilename || 'fonts';
+  const templateOptions = {
+    classPrefix: assetConfig.fonts.cssClassPrefix || 'font-',
+    mixinName: assetConfig.fonts.scssMixinName || 'webfont'
+  };
 
   // Override options with the one provided by the loader webpack main configuration
   if (typeof options.fonts.fontFilename === 'string') {
@@ -103,8 +107,8 @@ function loader (content, map, meta) {
 
     /* Generate the fontfaces CSS and SCSS
     ============================================================================= */
-    fontfacesCSS = utils.generateFontfaces(fontsDetail, fontfaceTemplateCSS);
-    fontfacesSCSS = utils.generateFontfaces(fontsDetail, fontfaceTemplateSCSS);
+    fontfacesCSS = utils.generateFontfaces(fontfaceTemplateCSS, fontsDetail, templateOptions);
+    fontfacesSCSS = utils.generateFontfaces(fontfaceTemplateSCSS, fontsDetail, templateOptions);
 
     /* Write to disk the SCSS file (OPTIONAL)
     ============================================================================= */
@@ -171,8 +175,9 @@ function loader (content, map, meta) {
     /* extension */scssDest: assetConfig.icons.scssDest || 'iconfont',
     /* extension */scssTemplate: assetConfig.icons.scssTemplate || scssTemplate,
     templateOptions: {
-      baseSelector: assetConfig.classSelector || 'icon',
-      classPrefix: 'classPrefix' in assetConfig ? assetConfig.classPrefix : 'icon-'
+      baseSelector: assetConfig.icons.cssClassSelector || 'icon',
+      classPrefix: assetConfig.icons.cssClassPrefix || 'icon-',
+      /* extension */mixinName: assetConfig.icons.scssMixinName || 'webfont-icon'
     }
   };
 

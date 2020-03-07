@@ -16,25 +16,73 @@ The loader will generate all the necessary supporting files to use the fonts.
 #### `*.html`
 
 ```html
-<span class="font-[FONT_FILE_NAME]"></span>
+<span class="[FONT_CLASS_PREFIX]-[FONT_FILE_NAME]"></span>
 
-<span class="icon icon-[SVG_FILE_NAME]"></span>
+<span class="[ICON_BASE_SELECTOR] [ICON_CLASS_PREFIX]-[SVG_FILE_NAME]"></span>
+```
+
+*Example*
+
+```html
+<span class="font-Roboto-ThinItalic"></span>
+
+<span class="icon icon-arrow"></span>
 ```
 
 ### Import the scss files and use the mixins
 
 #### `*.sass`
 
+#### Mixin: `webfont`
+
+`FONT_FILE_NAME`: Required
+
+`FONT_WEIGHT`: Optional | Default: normal | Values: css standard
+
+`FONT_STYLE`: Optional | Default: normal | Values: css standard
+
 ```sass
-@import 'iconfont/iconfont'
+@include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
+```
+
+*Example:*
+
+```sass
 @import 'fonts/fonts'
 
-body
-  font-family: "FONT_FILE_NAME"
-  @include font('FONT_FILE_NAME')
+div
+  @include webfont('Arial', 'bold', 'italic')
+  
+p
+  @include webfont('Roboto-ThinItalic')
+```
+
+#### Mixin: `webfont-icon`
+
+`SVG_FILE_NAME`: Required
+
+`ICON_POSITION`: Optional | Default: before | Values: [before|after]
+
+`ICON_ALIGN`: Optional | Default: top | Values: css standard
+
+`ICON_SIZE`: Optional | Default: inherit | Values: css standard
+
+`ICON_WEIGHT`: Optional | Default: normal | Values: css standard
+
+`ICON_STYLE`: Optional | Default: normal | Values: css standard
+
+```sass
+@include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
+```
+
+*Example:*
+
+```sass
+@import 'iconfont/iconfont'
 
 span
-  @include webfont-icon('SVG_FILE_NAME')
+  @include webfont-icon('calendar', 'before', 'middle', '16px', 'bold', 'italic')
+  @include webfont-icon('arrow', 'after')
 ```
 
 ## Installation
@@ -165,8 +213,10 @@ module.exports = {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/fonts'),
     cssFilename: 'fonts',
+    cssClassPrefix: 'font-',
     scssDest: path.resolve(__dirname, 'styles/fonts'),
-    scssFilename: 'fonts'
+    scssFilename: 'fonts',
+    scssMixinName: 'webfont'
   },
   icons: {
     files: [
@@ -189,10 +239,11 @@ module.exports = {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/iconfont'),
     cssFilename: 'iconfont',
+    cssClassSelector: 'icon',
+    cssClassPrefix: 'icon-',
     scssDest: path.resolve(__dirname, 'styles/iconfont'),
     scssFilename: 'iconfont',
-    classSelector: 'icon',
-    classPrefix: 'icon-'
+    scssMixinName: 'webfont-icon'
   }
 };
 ```
@@ -217,8 +268,10 @@ fonts: {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/fonts'),
     cssFilename: 'fonts',
+    cssClassPrefix: 'font-',
     scssDest: path.resolve(__dirname, 'styles/fonts'),
-    scssFilename: 'fonts'
+    scssFilename: 'fonts',
+    scssMixinName: 'webfont'
 }
 ```
 #### files
@@ -289,6 +342,16 @@ Default: `iconfont`
 
 The name CSS file being generated.
 
+#### cssClassPrefix
+
+Required: `false`
+
+Type: `String`
+
+Default: `font-`
+
+The prefix to use for the font classes being generated.
+
 #### fontfaceTemplateCSS
 
 Required: `false`
@@ -331,6 +394,16 @@ Default: `../templates/fontface-scss.hbs`
 
 The template to use to generate the scss.
 
+#### scssMixinName
+
+Required: `false`
+
+Type: `String`
+
+Default: `webfont`
+
+The name of the scss mixin to call when including the font.
+
 ### icons
 
 ```javascript
@@ -355,10 +428,11 @@ icons: {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/iconfont'),
     cssFilename: 'iconfont',
+    cssClassSelector: 'icon',
+    cssClassPrefix: 'icon-',
     scssDest: path.resolve(__dirname, 'styles/iconfont'),
     scssFilename: 'iconfont',
-    classSelector: 'icon',
-    classPrefix: 'icon-'
+    scssMixinName: 'webfont-icon'
 }
 ```
 #### files
@@ -444,6 +518,15 @@ Default: `fonts`
 
 The name CSS file being generated.
 
+#### cssClassSelector
+
+See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
+
+#### cssClassPrefix
+
+See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
+
+
 #### cssTemplate
 
 Required: `false`
@@ -486,13 +569,15 @@ Default: `../templates/scss.hbs`
 
 The template to use to generate the scss.
 
-#### classSelector
+#### scssMixinName
 
-See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
+Required: `false`
 
-#### classPrefix
+Type: `String`
 
-See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
+Default: `webfont-icon`
+
+The name of the scss mixin to call when including the icons.
 
 ## Tests
 

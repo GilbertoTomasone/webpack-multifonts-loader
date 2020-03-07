@@ -143,7 +143,7 @@ function emitFonts (loader, fonts, inputPath, outputPath, filename) {
 
 /* Generate the fontface from the fonts detail
 ============================================================================= */
-function generateFontfaces (fontsDetail, fontfaceTemplate) {
+function generateFontfaces (fontfaceTemplate, fontsDetail, templateOptions) {
   const fonts = [];
   Object.keys(fontsDetail).forEach((fontName) => {
     const font = fontsDetail[fontName];
@@ -154,14 +154,16 @@ function generateFontfaces (fontsDetail, fontfaceTemplate) {
     }, font.urls);
     const ctx = {
       fontName: font.name,
-      src: fontSrc
+      src: fontSrc,
+      classPrefix: templateOptions.classPrefix
     };
     fonts.push(ctx);
   });
   if (fonts.length > 0) {
     const template = fs.readFileSync(fontfaceTemplate, 'utf8');
     return handlebars.compile(template)({
-      fonts: fonts
+      fonts: fonts,
+      mixinName: templateOptions.mixinName
     });
   }
   return '';
