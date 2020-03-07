@@ -9,8 +9,6 @@ Loader for webpack to generate **fontfaces** from font families and **iconfonts*
 
 ## Usage
 
-The loader will generate all the necessary supporting files to use the fonts.
-
 ### Inject classes in the markup
 
 #### `*.html`
