@@ -7,6 +7,12 @@
 
 Loader for webpack to generate **fontfaces** from font families and **iconfonts** from svgs using <a href="https://github.com/vusion/webfonts-generator">webfonts-generator</a>.
 
+## Installation
+
+```
+$ npm install webpack-fonts-loader
+```
+
 ## Usage
 
 ### Inject classes in the markup
@@ -81,12 +87,6 @@ p
 span
   @include webfont-icon('calendar', 'before', 'middle', '16px', 'bold', 'italic')
   @include webfont-icon('arrow', 'after')
-```
-
-## Installation
-
-```
-$ npm install webpack-fonts-loader
 ```
 
 ## Setup
