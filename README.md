@@ -289,6 +289,16 @@ Default: `iconfont`
 
 The name CSS file being generated.
 
+#### fontfaceTemplateCSS
+
+Required: `false`
+
+Type: `String`
+
+Default: `../templates/fontface-css.hbs`
+
+The template to use to generate the css.
+
 #### scssDest
 
 Required: `false`
@@ -310,6 +320,16 @@ Type: `String`
 Default: `iconfont`
 
 The name SCSS file being generated.
+
+#### fontfaceTemplateSCSS
+
+Required: `false`
+
+Type: `String`
+
+Default: `../templates/fontface-scss.hbs`
+
+The template to use to generate the scss.
 
 ### icons
 
@@ -424,6 +444,16 @@ Default: `fonts`
 
 The name CSS file being generated.
 
+#### cssTemplate
+
+Required: `false`
+
+Type: `String`
+
+Default: `../templates/css.hbs`
+
+The template to use to generate the css.
+
 #### scssDest
 
 Required: `false`
@@ -445,6 +475,16 @@ Type: `String`
 Default: `fonts`
 
 The name SCSS file being generated.
+
+#### scssTemplate
+
+Required: `false`
+
+Type: `String`
+
+Default: `../templates/scss.hbs`
+
+The template to use to generate the scss.
 
 #### classSelector
 
