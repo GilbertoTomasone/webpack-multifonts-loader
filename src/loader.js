@@ -60,8 +60,6 @@ function loader (content, map, meta) {
 
   /* Initialise fonts options
    *
-   * fontfaceTemplateCSS:
-   * fontfaceTemplateSCSS:
    * inputPath:
    * outputPath:
    * fontFilename:
@@ -69,6 +67,8 @@ function loader (content, map, meta) {
    * cssFilename:
    * scssDest:
    * scssFilename:
+   * fontfaceTemplateCSS:
+   * fontfaceTemplateSCSS:
    * templateOptions:
    * - classPrefix:
    * - mixinName:
@@ -158,9 +158,9 @@ function loader (content, map, meta) {
    * publicPath:
    * cssFilename:
    * cssDest:
-   * cssTemplate:
    * scssFilename:
    * scssDest:
+   * cssTemplate:
    * scssTemplate:
    * templateOptions:
    * - baseSelector:

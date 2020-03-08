@@ -93,8 +93,47 @@ span
 
 ### Webpack Rule
 
-Chain the multifonts-loader with the css-loader and MiniCssExtractPlugin loader to 
-generate the CSS style directly into the Webpack default output path.
+Create one or multiple configuration files for your fonts and iconfonts 
+and chain the multifonts-loader with the css-loader 
+and MiniCssExtractPlugin loader to generate the CSS style 
+directly into the Webpack default output path.
+
+Optionally you can also generate the css and scss files to include directly
+into your application.
+
+See below [fonts webpack-multifonts-loader#cssdest](https://github.com/GilbertoTomasone/webpack-multifonts-loader#cssdest)
+
+See below [fonts webpack-multifonts-loader#scssdest](https://github.com/GilbertoTomasone/webpack-multifonts-loader#scssdest)
+
+See below [icons webpack-multifonts-loader#cssdest](https://github.com/GilbertoTomasone/webpack-multifonts-loader#cssdest-1)
+
+See below [icons webpack-multifonts-loader#scssdest](https://github.com/GilbertoTomasone/webpack-multifonts-loader#scssdest-1)
+
+
+```javascript
+{
+  test: /multifonts\.loader\.js/,
+  use: [
+    MiniCssExtractPlugin.loader,
+    'css-loader',
+    'multifonts-loader'
+  ]
+}
+```
+
+### Loader Options
+
+Extend the loader configuration by including all the available options
+directly in the rule definition.
+
+See below [webpack-multifonts-loader#options](https://github.com/GilbertoTomasone/webpack-multifonts-loader#options)
+
+*Example:*
+
+You can override the fontFilename depending on the environment.
+
+See below [fonts webpack-multifonts-loader#fontfilename](https://github.com/GilbertoTomasone/webpack-multifonts-loader#fontfilename)
+See below [icons webpack-multifonts-loader#fontfilename](https://github.com/GilbertoTomasone/webpack-multifonts-loader#fontfilename-1)
 
 ```javascript
 {
@@ -105,61 +144,24 @@ generate the CSS style directly into the Webpack default output path.
     {
       loader: 'multifonts-loader',
       options: {
-        icons: {
-          fontFilename: isDevelopment
-            ? '[fontname].[chunkhash].[ext]?[hash]'
-            : '[chunkhash].[ext]?[hash]'
-        },
-        fonts: {
-          fontFilename: isDevelopment
-            ? '[fontname].[chunkhash].[ext]?[hash]'
-            : '[chunkhash].[ext]?[hash]'
-        }
+          fonts: {
+            fontFilename: isDevelopment
+              ? '[fontname].[chunkhash].[ext]?[hash]'
+              : '[chunkhash].[ext]?[hash]'
+             // ...
+             // Add any other available option
+          },
+          icons: {
+            fontFilename: isDevelopment
+              ? '[fontname].[chunkhash].[ext]?[hash]'
+              : '[chunkhash].[ext]?[hash]'
+             // ...
+             // Add any other available option
+          }
       }
     }
   ]
 }
-```
-
-### Loader Options
-
-```javascript
-options: {
-    icons: {
-      fontFilename: isDevelopment
-        ? '[fontname].[chunkhash].[ext]?[hash]'
-        : '[chunkhash].[ext]?[hash]'
-    },
-    fonts: {
-      fontFilename: isDevelopment
-        ? '[fontname].[chunkhash].[ext]?[hash]'
-        : '[chunkhash].[ext]?[hash]'
-    }
-}
-```
-
-#### `icons`, Object
-
-#### fontFilename
-
-The name of the generated iconfont file.
-
-*Example:*
-```javascript
-[fontname].[chunkhash].[ext]?[hash]
-[chunkhash].[ext]?[hash]
-```
-
-#### `fonts`, Object
-
-#### fontFilename
-
-The name of the generated font files.
-
-*Example:*
-```javascript
-[fontname].[chunkhash].[ext]?[hash]
-[chunkhash].[ext]?[hash]
 ```
 
 ## Integration
@@ -211,10 +213,12 @@ module.exports = {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/fonts'),
     cssFilename: 'fonts',
-    cssClassPrefix: 'font-',
     scssDest: path.resolve(__dirname, 'styles/fonts'),
     scssFilename: 'fonts',
-    scssMixinName: 'webfont'
+    templateOptions: {
+      classPrefix: 'font-',
+      mixinName: 'webfont'
+    }
   },
   icons: {
     files: [
@@ -237,11 +241,13 @@ module.exports = {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/iconfont'),
     cssFilename: 'iconfont',
-    cssClassSelector: 'icon',
-    cssClassPrefix: 'icon-',
     scssDest: path.resolve(__dirname, 'styles/iconfont'),
     scssFilename: 'iconfont',
-    scssMixinName: 'webfont-icon'
+    templateOptions: {
+      baseSelector: 'icon',
+      classPrefix: 'icon-',
+      mixinName: 'webfont-icon'
+    }
   }
 };
 ```
@@ -266,10 +272,12 @@ fonts: {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/fonts'),
     cssFilename: 'fonts',
-    cssClassPrefix: 'font-',
     scssDest: path.resolve(__dirname, 'styles/fonts'),
     scssFilename: 'fonts',
-    scssMixinName: 'webfont'
+    templateOptions: {
+      classPrefix: 'font-',
+      mixinName: 'webfont'
+    }
 }
 ```
 #### files
@@ -340,26 +348,6 @@ Default: `iconfont`
 
 The name CSS file being generated.
 
-#### cssClassPrefix
-
-Required: `false`
-
-Type: `String`
-
-Default: `font-`
-
-The prefix to use for the font classes being generated.
-
-#### fontfaceTemplateCSS
-
-Required: `false`
-
-Type: `String`
-
-Default: `../templates/fontface-css.hbs`
-
-The template to use to generate the css.
-
 #### scssDest
 
 Required: `false`
@@ -382,6 +370,16 @@ Default: `iconfont`
 
 The name SCSS file being generated.
 
+#### fontfaceTemplateCSS
+
+Required: `false`
+
+Type: `String`
+
+Default: `../templates/fontface-css.hbs`
+
+The template to use to generate the css.
+
 #### fontfaceTemplateSCSS
 
 Required: `false`
@@ -392,7 +390,33 @@ Default: `../templates/fontface-scss.hbs`
 
 The template to use to generate the scss.
 
-#### scssMixinName
+#### templateOptions
+
+Options passed to the fontfaceTemplateCSS and fontfaceTemplateSCSS.
+
+It can be extended to include any custom variables you would like 
+to render in your custom templates.
+
+```javascript
+templateOptions: {
+  classPrefix: 'font-',
+  mixinName: 'webfont',
+  // This options will be passed to the template for you to render
+  customOption: 'customValue'
+}
+```
+
+##### classPrefix
+
+Required: `false`
+
+Type: `String`
+
+Default: `font-`
+
+The prefix to use for the font classes being generated.
+
+##### mixinName
 
 Required: `false`
 
@@ -426,11 +450,13 @@ icons: {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/iconfont'),
     cssFilename: 'iconfont',
-    cssClassSelector: 'icon',
-    cssClassPrefix: 'icon-',
     scssDest: path.resolve(__dirname, 'styles/iconfont'),
     scssFilename: 'iconfont',
-    scssMixinName: 'webfont-icon'
+    templateOptions: {
+      baseSelector: 'icon',
+      classPrefix: 'icon-',
+      mixinName: 'webfont-icon'
+    }
 }
 ```
 #### files
@@ -516,25 +542,6 @@ Default: `fonts`
 
 The name CSS file being generated.
 
-#### cssClassSelector
-
-See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
-
-#### cssClassPrefix
-
-See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
-
-
-#### cssTemplate
-
-Required: `false`
-
-Type: `String`
-
-Default: `../templates/css.hbs`
-
-The template to use to generate the css.
-
 #### scssDest
 
 Required: `false`
@@ -557,6 +564,16 @@ Default: `fonts`
 
 The name SCSS file being generated.
 
+#### cssTemplate
+
+Required: `false`
+
+Type: `String`
+
+Default: `../templates/css.hbs`
+
+The template to use to generate the css.
+
 #### scssTemplate
 
 Required: `false`
@@ -567,7 +584,48 @@ Default: `../templates/scss.hbs`
 
 The template to use to generate the scss.
 
-#### scssMixinName
+#### templateOptions
+
+Options passed to the cssTemplate and scssTemplate.
+
+It can be extended to include any custom variables you would like 
+to render in your custom templates.
+
+```javascript
+templateOptions: {
+  baseSelector: 'icon',
+  classPrefix: 'icon-',
+  mixinName: 'webfont-icon',
+  // This options will be passed to the template for you to render
+  customOption: 'customValue'
+}
+```
+
+##### baseSelector
+
+Required: `false`
+
+Type: `String`
+
+Default: `icon`
+
+The class name for the css being generated.
+
+See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
+
+##### classPrefix
+
+Required: `false`
+
+Type: `String`
+
+Default: `icon-`
+
+The css class prefix for the css being generated.
+
+See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
+
+##### mixinName
 
 Required: `false`
 
