@@ -60,7 +60,8 @@ function loader (content, map, meta) {
 
   /* Initialise fonts options
    *
-   * fontfaceTemplate:
+   * fontfaceTemplateCSS:
+   * fontfaceTemplateSCSS:
    * inputPath:
    * outputPath:
    * fontFilename:
@@ -68,63 +69,68 @@ function loader (content, map, meta) {
    * cssFilename:
    * scssDest:
    * scssFilename:
+   * templateOptions:
+   * - classPrefix:
+   * - mixinName:
   ============================================================================= */
-  const fontfaceTemplateCSS = assetConfig.fonts.fontfaceTemplateCSS || path.resolve(__dirname, '../templates', 'fontface-css.hbs');
-  const fontfaceTemplateSCSS = assetConfig.fonts.fontfaceTemplateSCSS || path.resolve(__dirname, '../templates', 'fontface-scss.hbs');
-  let inputPath = assetConfig.fonts.inputPath || false;
-  let outputPath = assetConfig.fonts.outputPath || 'fonts';
-  let fontFilename = assetConfig.fonts.fontFilename || '[fontname].[hash].[ext]';
-  let cssDest = assetConfig.fonts.cssDest || false;
-  const cssFilename = assetConfig.fonts.cssFilename || 'fonts';
-  let scssDest = assetConfig.fonts.scssDest || false;
-  const scssFilename = assetConfig.fonts.scssFilename || 'fonts';
-  const templateOptions = {
-    classPrefix: assetConfig.fonts.cssClassPrefix || 'font-',
-    mixinName: assetConfig.fonts.scssMixinName || 'webfont'
+  const fontsOptions = {
+    fontfaceTemplateCSS: assetConfig.fonts.fontfaceTemplateCSS || path.resolve(__dirname, '../templates', 'fontface-css.hbs'),
+    fontfaceTemplateSCSS: assetConfig.fonts.fontfaceTemplateSCSS || path.resolve(__dirname, '../templates', 'fontface-scss.hbs'),
+    inputPath: assetConfig.fonts.inputPath || false,
+    outputPath: assetConfig.fonts.outputPath || 'fonts',
+    fontFilename: assetConfig.fonts.fontFilename || '[fontname].[hash].[ext]',
+    cssDest: assetConfig.fonts.cssDest || false,
+    cssFilename: assetConfig.fonts.cssFilename || 'fonts',
+    scssDest: assetConfig.fonts.scssDest || false,
+    scssFilename: assetConfig.fonts.scssFilename || 'fonts',
+    templateOptions: Object.assign({
+      classPrefix: assetConfig.fonts.templateOptions.classPrefix || 'font-',
+      mixinName: assetConfig.fonts.templateOptions.mixinName || 'webfont'
+    }, assetConfig.fonts.templateOptions)
   };
 
   // Override options with the one provided by the loader webpack main configuration
   if (typeof options.fonts.fontFilename === 'string') {
-    fontFilename = options.fonts.fontFilename;
+    fontsOptions.fontFilename = options.fonts.fontFilename;
   }
 
   // Add trailing slash to paths
-  if (inputPath !== false && inputPath.substr(-1) !== '/') inputPath += '/';
-  if (outputPath !== false && outputPath.substr(-1) !== '/') outputPath += '/';
-  if (cssDest !== false && cssDest.substr(-1) !== '/') cssDest += '/';
-  if (scssDest !== false && scssDest.substr(-1) !== '/') scssDest += '/';
+  if (fontsOptions.inputPath !== false && fontsOptions.inputPath.substr(-1) !== '/') fontsOptions.inputPath += '/';
+  if (fontsOptions.outputPath !== false && fontsOptions.outputPath.substr(-1) !== '/') fontsOptions.outputPath += '/';
+  if (fontsOptions.cssDest !== false && fontsOptions.cssDest.substr(-1) !== '/') fontsOptions.cssDest += '/';
+  if (fontsOptions.scssDest !== false && fontsOptions.scssDest.substr(-1) !== '/') fontsOptions.scssDest += '/';
 
   // Update files dependency
-  this.addDependency.bind(fontfaceTemplateCSS);
-  this.addDependency.bind(fontfaceTemplateSCSS);
+  this.addDependency.bind(fontsOptions.fontfaceTemplateCSS);
+  this.addDependency.bind(fontsOptions.fontfaceTemplateSCSS);
 
   let fontfacesCSS = '';
   let fontfacesSCSS = '';
-  if (inputPath !== false) {
+  if (fontsOptions.inputPath !== false) {
     /* Emit fonts files
     ============================================================================= */
-    const fontsDetail = utils.emitFonts(this, fonts.filesFound, inputPath, outputPath, fontFilename);
+    const fontsDetail = utils.emitFonts(this, fonts.filesFound, fontsOptions.inputPath, fontsOptions.outputPath, fontsOptions.fontFilename);
 
     /* Generate the fontfaces CSS and SCSS
     ============================================================================= */
-    fontfacesCSS = utils.generateFontfaces(fontfaceTemplateCSS, fontsDetail, templateOptions);
-    fontfacesSCSS = utils.generateFontfaces(fontfaceTemplateSCSS, fontsDetail, templateOptions);
+    fontfacesCSS = utils.generateFontfaces(fontsOptions.fontfaceTemplateCSS, fontsDetail, fontsOptions.templateOptions);
+    fontfacesSCSS = utils.generateFontfaces(fontsOptions.fontfaceTemplateSCSS, fontsDetail, fontsOptions.templateOptions);
 
     /* Write to disk the SCSS file (OPTIONAL)
     ============================================================================= */
-    if (scssDest && fontfacesCSS.length > 0) {
+    if (fontsOptions.scssDest && fontfacesCSS.length > 0) {
       // Create the destination folder
-      mkdirp.sync(scssDest);
-      const fontsScssFilename = scssDest.concat(`${scssFilename}.scss`);
+      mkdirp.sync(fontsOptions.scssDest);
+      const fontsScssFilename = fontsOptions.scssDest.concat(`${fontsOptions.scssFilename}.scss`);
       fs.writeFileSync(fontsScssFilename, fontfacesSCSS);
     }
 
     /* Write to disk the CSS file (OPTIONAL)
     ============================================================================= */
-    if (cssDest && fontfacesCSS.length > 0) {
+    if (fontsOptions.cssDest && fontfacesCSS.length > 0) {
       // Create the destination folder
-      mkdirp.sync(cssDest);
-      const fontsCssFilename = cssDest.concat(`${cssFilename}.css`);
+      mkdirp.sync(fontsOptions.cssDest);
+      const fontsCssFilename = fontsOptions.cssDest.concat(`${fontsOptions.cssFilename}.css`);
       fs.writeFileSync(fontsCssFilename, fontfacesCSS);
     }
 
@@ -156,6 +162,10 @@ function loader (content, map, meta) {
    * scssFilename:
    * scssDest:
    * scssTemplate:
+   * templateOptions:
+   * - baseSelector:
+   * - classPrefix:
+   * - mixinName
   ============================================================================= */
   const cssTemplate = path.resolve(__dirname, '../templates', 'css.hbs');
   const scssTemplate = path.resolve(__dirname, '../templates', 'scss.hbs');
@@ -174,11 +184,11 @@ function loader (content, map, meta) {
     /* extension */scssFilename: assetConfig.icons.scssFilename || 'iconfont',
     /* extension */scssDest: assetConfig.icons.scssDest || 'iconfont',
     /* extension */scssTemplate: assetConfig.icons.scssTemplate || scssTemplate,
-    templateOptions: {
-      baseSelector: assetConfig.icons.cssClassSelector || 'icon',
-      classPrefix: assetConfig.icons.cssClassPrefix || 'icon-',
-      /* extension */mixinName: assetConfig.icons.scssMixinName || 'webfont-icon'
-    }
+    templateOptions: Object.assign({
+      baseSelector: assetConfig.icons.templateOptions.cssClassSelector || 'icon',
+      classPrefix: assetConfig.icons.templateOptions.cssClassPrefix || 'icon-',
+      /* extension */mixinName: assetConfig.icons.templateOptions.scssMixinName || 'webfont-icon'
+    }, assetConfig.icons.templateOptions)
   };
 
   // Override options with the one provided by the loader webpack main configuration

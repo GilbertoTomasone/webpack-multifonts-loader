@@ -152,19 +152,17 @@ function generateFontfaces (fontfaceTemplate, fontsDetail, templateOptions) {
       order: font.types,
       types: font.types
     }, font.urls);
-    const ctx = {
+    const ctx = Object.assign({
       fontName: font.name,
-      src: fontSrc,
-      classPrefix: templateOptions.classPrefix
-    };
+      src: fontSrc
+    }, templateOptions);
     fonts.push(ctx);
   });
   if (fonts.length > 0) {
     const template = fs.readFileSync(fontfaceTemplate, 'utf8');
-    return handlebars.compile(template)({
-      fonts: fonts,
-      mixinName: templateOptions.mixinName
-    });
+    return handlebars.compile(template)(Object.assign({
+      fonts: fonts
+    }, templateOptions));
   }
   return '';
 }

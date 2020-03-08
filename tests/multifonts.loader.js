@@ -16,10 +16,12 @@ module.exports = {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/fonts'),
     cssFilename: 'fonts',
-    cssClassPrefix: 'font-',
     scssDest: path.resolve(__dirname, 'styles/fonts'),
     scssFilename: 'fonts',
-    scssMixinName: 'webfont'
+    templateOptions: {
+      classPrefix: 'font-',
+      mixinName: 'webfont'
+    }
   },
   icons: {
     files: [
@@ -42,10 +44,12 @@ module.exports = {
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/iconfont'),
     cssFilename: 'iconfont',
-    cssClassSelector: 'icon',
-    cssClassPrefix: 'icon-',
     scssDest: path.resolve(__dirname, 'styles/iconfont'),
     scssFilename: 'iconfont',
-    scssMixinName: 'webfont-icon'
+    templateOptions: {
+      baseSelector: 'icon',
+      classPrefix: 'icon-',
+      mixinName: 'webfont-icon'
+    }
   }
 };
