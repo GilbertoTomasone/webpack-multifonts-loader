@@ -73,6 +73,7 @@ function loader (content, map, meta) {
    * - classPrefix:
    * - mixinName:
   ============================================================================= */
+  assetConfig.fonts.templateOptions = assetConfig.fonts.templateOptions || {};
   let fontsOptions = {
     fontfaceTemplateCSS: assetConfig.fonts.fontfaceTemplateCSS || path.resolve(__dirname, '../templates', 'fontface-css.hbs'),
     fontfaceTemplateSCSS: assetConfig.fonts.fontfaceTemplateSCSS || path.resolve(__dirname, '../templates', 'fontface-scss.hbs'),
@@ -169,6 +170,7 @@ function loader (content, map, meta) {
   ============================================================================= */
   const cssTemplate = path.resolve(__dirname, '../templates', 'css.hbs');
   const scssTemplate = path.resolve(__dirname, '../templates', 'scss.hbs');
+  assetConfig.icons.templateOptions = assetConfig.icons.templateOptions || {};
   let webfontsOptions = {
     files: icons.filesFound,
     types: assetConfig.icons.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
