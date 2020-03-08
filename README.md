@@ -124,7 +124,7 @@ See below [icons webpack-multifonts-loader#scssdest](https://github.com/Gilberto
 ### Loader Options
 
 Extend the loader configuration by including all the available options
-directly in the rule definition.
+directly into the rule definition.
 
 See below [webpack-multifonts-loader#options](https://github.com/GilbertoTomasone/webpack-multifonts-loader#options)
 
