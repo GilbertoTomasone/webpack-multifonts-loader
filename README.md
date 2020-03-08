@@ -39,11 +39,11 @@ $ npm install webpack-fonts-loader
 
 #### Mixin: `webfont`
 
-`FONT_FILE_NAME`: Required
+FONT_FILE_NAME: `Required`
 
-`FONT_WEIGHT`: Optional | Default: normal | Values: css standard
+FONT_WEIGHT: `Optional | Default: normal | Values: css standard`
 
-`FONT_STYLE`: Optional | Default: normal | Values: css standard
+FONT_STYLE: `Optional | Default: normal | Values: css standard`
 
 ```sass
 @include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
@@ -63,17 +63,17 @@ p
 
 #### Mixin: `webfont-icon`
 
-`SVG_FILE_NAME`: Required
+SVG_FILE_NAME: `Required`
 
-`ICON_POSITION`: Optional | Default: before | Values: [before|after]
+ICON_POSITION: `Optional | Default: before | Values: [before|after]`
 
-`ICON_ALIGN`: Optional | Default: top | Values: css standard
+ICON_ALIGN: `Optional | Default: top | Values: css standard`
 
-`ICON_SIZE`: Optional | Default: inherit | Values: css standard
+ICON_SIZE: `Optional | Default: inherit | Values: css standard`
 
-`ICON_WEIGHT`: Optional | Default: normal | Values: css standard
+ICON_WEIGHT: `Optional | Default: normal | Values: css standard`
 
-`ICON_STYLE`: Optional | Default: normal | Values: css standard
+ICON_STYLE: `Optional | Default: normal | Values: css standard`
 
 ```sass
 @include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
