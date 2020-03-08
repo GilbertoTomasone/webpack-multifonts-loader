@@ -73,7 +73,7 @@ function loader (content, map, meta) {
    * - classPrefix:
    * - mixinName:
   ============================================================================= */
-  const fontsOptions = {
+  let fontsOptions = {
     fontfaceTemplateCSS: assetConfig.fonts.fontfaceTemplateCSS || path.resolve(__dirname, '../templates', 'fontface-css.hbs'),
     fontfaceTemplateSCSS: assetConfig.fonts.fontfaceTemplateSCSS || path.resolve(__dirname, '../templates', 'fontface-scss.hbs'),
     inputPath: assetConfig.fonts.inputPath || false,
@@ -90,8 +90,8 @@ function loader (content, map, meta) {
   };
 
   // Override options with the one provided by the loader webpack main configuration
-  if (typeof options.fonts.fontFilename === 'string') {
-    fontsOptions.fontFilename = options.fonts.fontFilename;
+  if (typeof options.fonts === 'object') {
+    fontsOptions = Object.assign(fontsOptions, options.fonts);
   }
 
   // Add trailing slash to paths
@@ -169,7 +169,7 @@ function loader (content, map, meta) {
   ============================================================================= */
   const cssTemplate = path.resolve(__dirname, '../templates', 'css.hbs');
   const scssTemplate = path.resolve(__dirname, '../templates', 'scss.hbs');
-  const webfontsOptions = {
+  let webfontsOptions = {
     files: icons.filesFound,
     types: assetConfig.icons.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
     order: assetConfig.icons.order || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
@@ -192,8 +192,8 @@ function loader (content, map, meta) {
   };
 
   // Override options with the one provided by the loader webpack main configuration
-  if (typeof options.icons.fontFilename === 'string') {
-    webfontsOptions.fileName = options.icons.fontFilename;
+  if (typeof options.icons === 'object') {
+    webfontsOptions = Object.assign(webfontsOptions, options.icons);
   }
 
   // Add trailing slash to paths
