@@ -28,6 +28,14 @@ $ npm install multifonts-loader
 
 ### `Inject classes in the markup`
 
+| Name                                      | Required | Default | Description                              |
+|-------------------------------------------|----------|---------|------------------------------------------|
+| **[`FONT_CLASS_PREFIX`](#classprefix)**   | `true`   | font-   | Specifies the class prefix for the font  |
+| **`FONT_FILE_NAME`**                      | `true`   | ''      | Specifies the font-family name           |
+| **[`ICON_BASE_SELECTOR`](#baseselector)** | `true`   | icon    | Specifies the base selector for the icon |
+| **[`ICON_CLASS_PREFIX`](#classprefix-1)** | `true`   | icon-   | Specifies the class prefix for the icon  |
+| **`SVG_FILE_NAME`**                       | `true`   | ''      | Specifies the icon name                  |
+
 #### `*.html`
 
 ```html
@@ -46,8 +54,6 @@ $ npm install multifonts-loader
 
 ### `Import the scss files and use the mixins`
 
-#### `*.sass`
-
 #### Mixin: `webfont`
 
 | Name                 | Required | Default  | Type           | Description                                                                                                          |
@@ -55,6 +61,8 @@ $ npm install multifonts-loader
 | **`FONT_FILE_NAME`** | `true`   | `''`     | `{String}`     | Specifies the name of the font-family to use. For generated fonts the font-family is derived from the font filename. |
 | **`FONT_WEIGHT`**    | `false`  | `normal` | `css standard` | Sets how thick or thin characters in text should be displayed                                                        |
 | **`FONT_STYLE`**     | `false`  | `normal` | `css standard` | Specifies the font style for a text                                                                                  |
+
+#### `*.sass`
 
 ```sass
 @include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
@@ -82,6 +90,8 @@ p
 | **`ICON_SIZE`**     | `false`  | `inherit` | `css standard`    | Specifies the size of the icon                                             |
 | **`ICON_WEIGHT`**   | `false`  | `normal`  | `css standard`    | Sets how thick or thin characters in text should be displayed              |
 | **`ICON_STYLE`**    | `false`  | `normal`  | `css standard`    | Specifies the font style for the icon                                      |
+
+#### `*.sass`
 
 ```sass
 @include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
@@ -507,26 +517,26 @@ icons: {
 
 #### Options
 
-| Name                                                | Type       | Required | Default                                  |
-|-----------------------------------------------------|------------|----------|------------------------------------------|
-| **[`files`](#files)**                               | `{Array}`  | `true`   | `undefined`                              |
-| **[`inputPath`](#inputpath)**                       | `{String}` | `true`   | `undefined`                              |
-| **[`outputPath`](#outputpath)**                     | `{String}` | `false`  | `fonts/`                                 |
-| **[`types`](#types)**                               | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
-| **[`order`](#order)**                               | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
-| **[`publicPath`](#publicpath)**                     | `{String}` | `false`  | `/`                                      |
-| **[`fontName`](#fontname)**                         | `{String}` | `false`  | `IconFont`                               |
-| **[`fontFilename`](#fontfilename)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`                |
-| **[`cssDest`](#cssDest)**                           | `{String}` | `false`  | `false`                                  |
-| **[`cssFilename`](#cssfilename)**                   | `{String}` | `false`  | `iconfont`                               |
-| **[`scssDest`](#scssdest)**                         | `{String}` | `false`  | `false`                                  |
-| **[`scssFilename`](#scssfilename)**                 | `{String}` | `false`  | `fonts`                                  |
-| **[`cssTemplate`](#csstemplate)**                   | `{String}` | `false`  | `../templates/css.hbs`                   |
-| **[`scssTemplate`](#scsstemplate)**                 | `{String}` | `false`  | `../templates/scss.hbs`                  |
-| **[`templateOptions`](#templateoptions)**           | `{Object}` | `false`  | `{}`                                     |
-| **[`templateOptions.baseSelector`](#baseselector)** | `{String}` | `false`  | `icon`                                   |
-| **[`templateOptions.classPrefix`](#classprefix)**   | `{String}` | `false`  | `icon-`                                  |
-| **[`templateOptions.mixinName`](#mixinname)**       | `{String}` | `false`  | `webfont-icon`                           |
+| Name                                                  | Type       | Required | Default                                  |
+|-------------------------------------------------------|------------|----------|------------------------------------------|
+| **[`files`](#files-1)**                               | `{Array}`  | `true`   | `undefined`                              |
+| **[`inputPath`](#inputpath-1)**                       | `{String}` | `true`   | `undefined`                              |
+| **[`outputPath`](#outputpath-1)**                     | `{String}` | `false`  | `fonts/`                                 |
+| **[`types`](#types)**                                 | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
+| **[`order`](#order)**                                 | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
+| **[`publicPath`](#publicpath)**                       | `{String}` | `false`  | `/`                                      |
+| **[`fontName`](#fontname)**                           | `{String}` | `false`  | `IconFont`                               |
+| **[`fontFilename`](#fontfilename-1)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`                |
+| **[`cssDest`](#cssDest-1)**                           | `{String}` | `false`  | `false`                                  |
+| **[`cssFilename`](#cssfilename-1)**                   | `{String}` | `false`  | `iconfont`                               |
+| **[`scssDest`](#scssdest-1)**                         | `{String}` | `false`  | `false`                                  |
+| **[`scssFilename`](#scssfilename-1)**                 | `{String}` | `false`  | `fonts`                                  |
+| **[`cssTemplate`](#csstemplate)**                     | `{String}` | `false`  | `../templates/css.hbs`                   |
+| **[`scssTemplate`](#scsstemplate)**                   | `{String}` | `false`  | `../templates/scss.hbs`                  |
+| **[`templateOptions`](#templateoptions-1)**           | `{Object}` | `false`  | `{}`                                     |
+| **[`templateOptions.baseSelector`](#baseselector)**   | `{String}` | `false`  | `icon`                                   |
+| **[`templateOptions.classPrefix`](#classprefix-1)**   | `{String}` | `false`  | `icon-`                                  |
+| **[`templateOptions.mixinName`](#mixinname-1)**       | `{String}` | `false`  | `webfont-icon`                           |
 
 #### `files`
 
