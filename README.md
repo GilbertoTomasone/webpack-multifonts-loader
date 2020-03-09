@@ -93,9 +93,14 @@ span
 
 ### Webpack Rule
 
-Create one or multiple configuration files for your fonts and iconfonts 
-and chain the multifonts-loader with the css-loader 
-and MiniCssExtractPlugin loader to generate the CSS style 
+Create one or multiple 
+[configuration files](https://github.com/GilbertoTomasone/webpack-multifonts-loader#configuration)
+for your fonts and iconfonts 
+and chain the ***multifonts-loader*** with the 
+[css-loader](https://www.npmjs.com/package/css-loader)
+and 
+[MiniCssExtractPlugin.loader](https://www.npmjs.com/package/mini-css-extract-plugin)
+to generate the CSS style 
 directly into the Webpack default output path.
 
 Optionally you can also generate the css and scss files to include directly
@@ -189,8 +194,8 @@ files to a specified location for you to include in your application.
    
 #### icons
 
-Responsible to locate and process the svg files
-    to generate the respective iconfont.
+Responsible to locate and process the svg files to generate the 
+respective iconfonts.
     
 Optionally, you can decide to generate the iconfont CSS and/or the SCSS 
 files to a specified location for you to include in your application. 
