@@ -21,7 +21,7 @@ Loader for webpack to generate **fontfaces** from font families and **iconfonts*
 ## Installation
 
 ```
-$ npm install webpack-fonts-loader
+$ npm install multifonts-loader
 ```
 
 ## Usage
