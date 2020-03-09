@@ -79,6 +79,7 @@ function loader (content, map, meta) {
     fontfaceTemplateSCSS: assetConfig.fonts.fontfaceTemplateSCSS || path.resolve(__dirname, '../templates', 'fontface-scss.hbs'),
     inputPath: assetConfig.fonts.inputPath || false,
     outputPath: assetConfig.fonts.outputPath || 'fonts',
+    publicPath: assetConfig.fonts.publicPath || '/',
     fontFilename: assetConfig.fonts.fontFilename || '[fontname].[hash].[ext]',
     cssDest: assetConfig.fonts.cssDest || false,
     cssFilename: assetConfig.fonts.cssFilename || 'fonts',
@@ -98,6 +99,7 @@ function loader (content, map, meta) {
   // Add trailing slash to paths
   if (fontsOptions.inputPath !== false && fontsOptions.inputPath.substr(-1) !== '/') fontsOptions.inputPath += '/';
   if (fontsOptions.outputPath !== false && fontsOptions.outputPath.substr(-1) !== '/') fontsOptions.outputPath += '/';
+  if (fontsOptions.publicPath !== false && fontsOptions.publicPath.substr(-1) !== '/') fontsOptions.publicPath += '/';
   if (fontsOptions.cssDest !== false && fontsOptions.cssDest.substr(-1) !== '/') fontsOptions.cssDest += '/';
   if (fontsOptions.scssDest !== false && fontsOptions.scssDest.substr(-1) !== '/') fontsOptions.scssDest += '/';
 
@@ -110,7 +112,7 @@ function loader (content, map, meta) {
   if (fontsOptions.inputPath !== false) {
     /* Emit fonts files
     ============================================================================= */
-    const fontsDetail = utils.emitFonts(this, fonts.filesFound, fontsOptions.inputPath, fontsOptions.outputPath, fontsOptions.fontFilename);
+    const fontsDetail = utils.emitFonts(this, fonts.filesFound, fontsOptions.inputPath, fontsOptions.outputPath, fontsOptions.publicPath, fontsOptions.fontFilename);
 
     /* Generate the fontfaces CSS and SCSS
     ============================================================================= */

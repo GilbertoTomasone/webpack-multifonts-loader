@@ -146,6 +146,7 @@ module.exports = {
     ],
     inputPath: path.resolve(__dirname, 'assets/fonts'),
     outputPath: 'fonts',
+    publicPath: '/',
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/fonts'),
     cssFilename: 'fonts',
@@ -316,6 +317,7 @@ fonts: {
     ],
     inputPath: path.resolve(__dirname, 'assets/fonts'),
     outputPath: 'fonts',
+    publicPath: '/',
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/fonts'),
     cssFilename: 'fonts',
@@ -335,6 +337,7 @@ fonts: {
 | **[`files`](#files)**                               | `{Array}`  | `true`   | `undefined`                      |
 | **[`inputPath`](#inputpath)**                       | `{String}` | `true`   | `undefined`                      |
 | **[`outputPath`](#outputpath)**                     | `{String}` | `false`  | `iconfont/`                      |
+| **[`publicPath`](#publicpath)**                     | `{String}` | `false`  | `/`                              |
 | **[`fontFilename`](#fontfilename)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`        |
 | **[`cssDest`](#cssDest)**                           | `{String}` | `false`  | `false`                          |
 | **[`cssFilename`](#cssfilename)**                   | `{String}` | `false`  | `iconfont`                       |
@@ -378,6 +381,18 @@ Default: `iconfont/`
 
 The path relative to the default Webpack output folder where to save 
 the fonts files.
+
+#### `publicPath`
+
+Required: `false`
+
+Type: `String`
+
+Default: `/`
+
+This is the URL prefix for the generated font url 
+(e.g. /static/ or https://cdn.project.net/). 
+Should typically match Webpack's config.output.publicPath.
 
 #### `fontFilename`
 
@@ -541,7 +556,7 @@ icons: {
 | **[`outputPath`](#outputpath-1)**                     | `{String}` | `false`  | `fonts/`                                 |
 | **[`types`](#types)**                                 | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
 | **[`order`](#order)**                                 | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
-| **[`publicPath`](#publicpath)**                       | `{String}` | `false`  | `/`                                      |
+| **[`publicPath`](#publicpath-1)**                       | `{String}` | `false`  | `/`                                      |
 | **[`fontName`](#fontname)**                           | `{String}` | `false`  | `IconFont`                               |
 | **[`fontFilename`](#fontfilename-1)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`                |
 | **[`cssDest`](#cssDest-1)**                           | `{String}` | `false`  | `false`                                  |

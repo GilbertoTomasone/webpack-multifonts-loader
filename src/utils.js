@@ -112,7 +112,7 @@ function getContext (loader) {
 
 /* Emit the fonts into the Webpack output destination
 ============================================================================= */
-function emitFonts (loader, fonts, inputPath, outputPath, filename) {
+function emitFonts (loader, fonts, inputPath, outputPath, publicPath, filename) {
   const fontsDetail = {};
   fonts.forEach((file) => {
     // Generate font metadata
@@ -129,7 +129,7 @@ function emitFonts (loader, fonts, inputPath, outputPath, filename) {
       fontExt
     );
     const fontURI = outputPath.concat(fontPath).concat(fontFilename);
-    const fontURL = ('/').concat(fontURI.replace(/\\/g, '/'));
+    const fontURL = publicPath.concat(fontURI.replace(/\\/g, '/'));
     // Aggregate font metadata
     fontsDetail[fontName] = fontsDetail[fontName] || { name: '', types: [], urls: [] };
     fontsDetail[fontName].name = fontName;

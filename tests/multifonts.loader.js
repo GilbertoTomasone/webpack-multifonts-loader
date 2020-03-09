@@ -13,6 +13,7 @@ module.exports = {
     ],
     inputPath: path.resolve(__dirname, 'assets/fonts'),
     outputPath: 'fonts',
+    publicPath: '/',
     fontFilename: '[fontname].[chunkhash].[ext]?[hash]',
     cssDest: path.resolve(__dirname, 'styles/fonts'),
     cssFilename: 'fonts',

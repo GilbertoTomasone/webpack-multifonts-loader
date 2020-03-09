@@ -1,6 +1,6 @@
 {
   "name": "multifonts-loader",
-  "version": "3.1.1",
+  "version": "3.2.0",
   "description": "A webpack loader to generate all your fontfaces and iconfonts in one go.",
   "main": "./index.js",
   "scripts": {
