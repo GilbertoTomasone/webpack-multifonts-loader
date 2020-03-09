@@ -1,7 +1,18 @@
-[![npm](https://img.shields.io/npm/v/multifonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/multifonts-loader)
-[![npm](https://img.shields.io/npm/dm/multifonts-loader.svg?style=flat-square)](https://www.npmjs.com/package/multifonts-loader)
-[![Travis](https://img.shields.io/travis/gilbertotomasone/webpack-multifonts-loader.svg?style=flat-square)](https://travis-ci.org/gilbertotomasone/webpack-multifonts-loader)
-[![license](https://img.shields.io/github/license/gilbertotomasone/webpack-multifonts-loader.svg?style=flat-square)](https://github.com/GilbertoTomasone/webpack-multifonts-loader/blob/master/LICENSE)
+[![npm][npm-version]][npm-url]
+[![npm][npm-download]][npm-url]
+[![Travis][travis-build]][travis-url]
+[![license][license]][license-url]
+[![size][size]][size-url]
+
+[npm-version]: https://img.shields.io/npm/v/multifonts-loader.svg?style=flat-square
+[npm-download]: https://img.shields.io/npm/dm/multifonts-loader.svg?style=flat-square
+[npm-url]: https://www.npmjs.com/package/multifonts-loader
+[travis-build]: https://img.shields.io/travis/gilbertotomasone/webpack-multifonts-loader.svg?style=flat-square
+[travis-url]: https://travis-ci.org/gilbertotomasone/webpack-multifonts-loader
+[license]: https://img.shields.io/github/license/gilbertotomasone/webpack-multifonts-loader.svg?style=flat-square
+[license-url]: https://github.com/GilbertoTomasone/webpack-multifonts-loader/blob/master/LICENSE
+[size]: https://packagephobia.now.sh/badge?p=multifonts-loader
+[size-url]: https://packagephobia.now.sh/result?p=multifonts-loader
 
 # Webpack Multifonts Loader
 
@@ -15,7 +26,7 @@ $ npm install webpack-fonts-loader
 
 ## Usage
 
-### Inject classes in the markup
+### `Inject classes in the markup`
 
 #### `*.html`
 
@@ -33,17 +44,17 @@ $ npm install webpack-fonts-loader
 <span class="icon icon-arrow"></span>
 ```
 
-### Import the scss files and use the mixins
+### `Import the scss files and use the mixins`
 
 #### `*.sass`
 
 #### Mixin: `webfont`
 
-FONT_FILE_NAME: `Required`
-
-FONT_WEIGHT: `Optional | Default: normal | Values: css standard`
-
-FONT_STYLE: `Optional | Default: normal | Values: css standard`
+| Name                 | Required | Default  | Type           | Description                                                                                                          |
+|----------------------|----------|----------|----------------|----------------------------------------------------------------------------------------------------------------------|
+| **`FONT_FILE_NAME`** | `true`   | `''`     | `{String}`     | Specifies the name of the font-family to use. For generated fonts the font-family is derived from the font filename. |
+| **`FONT_WEIGHT`**    | `false`  | `normal` | `css standard` | Sets how thick or thin characters in text should be displayed                                                        |
+| **`FONT_STYLE`**     | `false`  | `normal` | `css standard` | Specifies the font style for a text                                                                                  |
 
 ```sass
 @include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
@@ -63,17 +74,14 @@ p
 
 #### Mixin: `webfont-icon`
 
-SVG_FILE_NAME: `Required`
-
-ICON_POSITION: `Optional | Default: before | Values: [before|after]`
-
-ICON_ALIGN: `Optional | Default: top | Values: css standard`
-
-ICON_SIZE: `Optional | Default: inherit | Values: css standard`
-
-ICON_WEIGHT: `Optional | Default: normal | Values: css standard`
-
-ICON_STYLE: `Optional | Default: normal | Values: css standard`
+| Name                | Required | Default   | Type              | Description                                                                |
+|---------------------|----------|-----------|-------------------|----------------------------------------------------------------------------|
+| **`SVG_FILE_NAME`** | `true`   | `''`      | `{String}`        | Specifies the name of the icon to use. It is derived from the svg filename |
+| **`ICON_POSITION`** | `false`  | `before`  | `[before,after]`  | The position of the icon relative to the current element                   |
+| **`ICON_ALIGN`**    | `false`  | `top`     | `css standard`    | Specifies the alignment of the icon                                        |
+| **`ICON_SIZE`**     | `false`  | `inherit` | `css standard`    | Specifies the size of the icon                                             |
+| **`ICON_WEIGHT`**   | `false`  | `normal`  | `css standard`    | Sets how thick or thin characters in text should be displayed              |
+| **`ICON_STYLE`**    | `false`  | `normal`  | `css standard`    | Specifies the font style for the icon                                      |
 
 ```sass
 @include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
@@ -184,7 +192,7 @@ require('multifonts.loader');
 
 The configuration file defines two main sections: 
 
-#### fonts
+#### `fonts`
 
 Responsible to locate and process the font families 
    to generate the respective fontfaces.
@@ -192,7 +200,7 @@ Responsible to locate and process the font families
 Optionally, you can decide to generate the fontfaces CSS and/or the SCSS 
 files to a specified location for you to include in your application.
    
-#### icons
+#### `icons`
 
 Responsible to locate and process the svg files to generate the 
 respective iconfonts.
@@ -286,7 +294,7 @@ fonts: {
     }
 }
 ```
-#### files
+#### `files`
 
 Required: `true`
 
@@ -298,7 +306,7 @@ Default: `undefined`
 The <a href="https://www.npmjs.com/package/glob">Glob</a> pattern to use to find
 the font files to process.
 
-#### inputPath
+#### `inputPath`
 
 Required: `true`
 
@@ -308,7 +316,7 @@ Default: `undefined`
 
 The context for the <a href="https://www.npmjs.com/package/glob">Glob</a> pattern.
 
-#### outputPath
+#### `outputPath`
 
 Required: `false`
 
@@ -319,7 +327,7 @@ Default: `iconfont/`
 The path relative to the default Webpack output folder where to save 
 the fonts files.
 
-#### fontFilename
+#### `fontFilename`
 
 See [webfonts-loader#filename-string](https://github.com/jeerbl/webfonts-loader#filename-string)
 
@@ -332,7 +340,7 @@ The generated font file names. These elements can be used:
 
 This option can be also configured globally in the webpack loader options.
 
-#### cssDest
+#### `cssDest`
 
 Required: `false`
 
@@ -344,7 +352,7 @@ The absolute path to use to save a copy of the CSS file being generated.
 
 If set the CSS file will be generated at the specified destination.
 
-#### cssFilename
+#### `cssFilename`
 
 Required: `false`
 
@@ -354,7 +362,7 @@ Default: `iconfont`
 
 The name CSS file being generated.
 
-#### scssDest
+#### `scssDest`
 
 Required: `false`
 
@@ -366,7 +374,7 @@ The absolute path to use to save a copy of the SCSS file being generated.
 
 If set the SCSS file will be generated at the specified destination.
 
-#### scssFilename
+#### `scssFilename`
 
 Required: `false`
 
@@ -376,7 +384,7 @@ Default: `iconfont`
 
 The name SCSS file being generated.
 
-#### fontfaceTemplateCSS
+#### `fontfaceTemplateCSS`
 
 Required: `false`
 
@@ -386,7 +394,7 @@ Default: `../templates/fontface-css.hbs`
 
 The template to use to generate the css.
 
-#### fontfaceTemplateSCSS
+#### `fontfaceTemplateSCSS`
 
 Required: `false`
 
@@ -396,7 +404,7 @@ Default: `../templates/fontface-scss.hbs`
 
 The template to use to generate the scss.
 
-#### templateOptions
+#### `templateOptions`
 
 Options passed to the fontfaceTemplateCSS and fontfaceTemplateSCSS.
 
@@ -412,7 +420,7 @@ templateOptions: {
 }
 ```
 
-##### classPrefix
+##### `classPrefix`
 
 Required: `false`
 
@@ -422,7 +430,7 @@ Default: `font-`
 
 The prefix to use for the font classes being generated.
 
-##### mixinName
+##### `mixinName`
 
 Required: `false`
 
@@ -465,7 +473,7 @@ icons: {
     }
 }
 ```
-#### files
+#### `files`
 
 Required: `true`
 
@@ -476,7 +484,7 @@ Default: `undefined`
 The <a href="https://www.npmjs.com/package/glob">Glob</a> pattern to use to find
 the svg files to process.
 
-#### inputPath
+#### `inputPath`
 
 Required: `true`
 
@@ -486,7 +494,7 @@ Default: `undefined`
 
 The context for the <a href="https://www.npmjs.com/package/glob">Glob</a> pattern.
 
-#### outputPath
+#### `outputPath`
 
 Required: `false`
 
@@ -497,23 +505,23 @@ Default: `fonts/`
 The path relative to the default Webpack output folder where to save 
 the svg iconfont files.
 
-#### types
+#### `types`
 
 See [webfonts-generator#types](https://github.com/vusion/webfonts-generator/#types)
 
-#### order
+#### `order`
 
 See [webfonts-generator#order](https://github.com/vusion/webfonts-generator/#order)
 
-#### publicPath
+#### `publicPath`
 
 See [webfonts-loader#publicpath-string](https://github.com/jeerbl/webfonts-loader#publicpath-string)
 
-#### fontName
+#### `fontName`
 
 See [webfonts-generator#fontname](https://github.com/vusion/webfonts-generator#fontname)
 
-#### fontFilename
+#### `fontFilename`
 
 See [webfonts-loader#filename-string](https://github.com/jeerbl/webfonts-loader#filename-string)
 
@@ -526,7 +534,7 @@ The generated font file names. These elements can be used:
 
 This option can be also configured globally in the webpack loader options.
 
-#### cssDest
+#### `cssDest`
 
 Required: `false`
 
@@ -538,7 +546,7 @@ The absolute path to use to save a copy of the CSS file being generated.
 
 If set the CSS file will be generated at the specified destination.
 
-#### cssFilename
+#### `cssFilename`
 
 Required: `false`
 
@@ -548,7 +556,7 @@ Default: `fonts`
 
 The name CSS file being generated.
 
-#### scssDest
+#### `scssDest`
 
 Required: `false`
 
@@ -560,7 +568,7 @@ The absolute path to use to save a copy of the SCSS file being generated.
 
 If set the SCSS file will be generated at the specified destination.
 
-#### scssFilename
+#### `scssFilename`
 
 Required: `false`
 
@@ -570,7 +578,7 @@ Default: `fonts`
 
 The name SCSS file being generated.
 
-#### cssTemplate
+#### `cssTemplate`
 
 Required: `false`
 
@@ -580,7 +588,7 @@ Default: `../templates/css.hbs`
 
 The template to use to generate the css.
 
-#### scssTemplate
+#### `scssTemplate`
 
 Required: `false`
 
@@ -590,7 +598,7 @@ Default: `../templates/scss.hbs`
 
 The template to use to generate the scss.
 
-#### templateOptions
+#### `templateOptions`
 
 Options passed to the cssTemplate and scssTemplate.
 
@@ -607,7 +615,7 @@ templateOptions: {
 }
 ```
 
-##### baseSelector
+##### `baseSelector`
 
 Required: `false`
 
@@ -619,7 +627,7 @@ The class name for the css being generated.
 
 See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
-##### classPrefix
+##### `classPrefix`
 
 Required: `false`
 
@@ -631,7 +639,7 @@ The css class prefix for the css being generated.
 
 See [webfonts-generator#templateoptions](https://github.com/vusion/webfonts-generator#templateoptions)
 
-##### mixinName
+##### `mixinName`
 
 Required: `false`
 

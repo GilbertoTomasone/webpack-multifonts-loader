@@ -13,8 +13,10 @@
   "keywords": [
     "webpack",
     "webpack-loader",
+    "loader",
     "font-face",
     "fonts",
+    "webfont",
     "icon-font",
     "icons",
     "ttf",
