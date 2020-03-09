@@ -50,15 +50,15 @@ $ npm install webpack-fonts-loader
 
 #### Mixin: `webfont`
 
+```sass
+@include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
+```
+
 | Name                 | Required | Default  | Type           | Description                                                                                                          |
 |----------------------|----------|----------|----------------|----------------------------------------------------------------------------------------------------------------------|
 | **`FONT_FILE_NAME`** | `true`   | `''`     | `{String}`     | Specifies the name of the font-family to use. For generated fonts the font-family is derived from the font filename. |
 | **`FONT_WEIGHT`**    | `false`  | `normal` | `css standard` | Sets how thick or thin characters in text should be displayed                                                        |
 | **`FONT_STYLE`**     | `false`  | `normal` | `css standard` | Specifies the font style for a text                                                                                  |
-
-```sass
-@include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
-```
 
 *Example:*
 
@@ -74,6 +74,10 @@ p
 
 #### Mixin: `webfont-icon`
 
+```sass
+@include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
+```
+
 | Name                | Required | Default   | Type              | Description                                                                |
 |---------------------|----------|-----------|-------------------|----------------------------------------------------------------------------|
 | **`SVG_FILE_NAME`** | `true`   | `''`      | `{String}`        | Specifies the name of the icon to use. It is derived from the svg filename |
@@ -82,10 +86,6 @@ p
 | **`ICON_SIZE`**     | `false`  | `inherit` | `css standard`    | Specifies the size of the icon                                             |
 | **`ICON_WEIGHT`**   | `false`  | `normal`  | `css standard`    | Sets how thick or thin characters in text should be displayed              |
 | **`ICON_STYLE`**    | `false`  | `normal`  | `css standard`    | Specifies the font style for the icon                                      |
-
-```sass
-@include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
-```
 
 *Example:*
 
@@ -97,116 +97,13 @@ span
   @include webfont-icon('arrow', 'after')
 ```
 
-## Setup
-
-### Webpack Rule
-
-Create one or multiple 
-[configuration files](https://github.com/GilbertoTomasone/webpack-multifonts-loader#configuration)
-for your fonts and iconfonts 
-and chain the ***multifonts-loader*** with the 
-[css-loader](https://www.npmjs.com/package/css-loader)
-and 
-[MiniCssExtractPlugin.loader](https://www.npmjs.com/package/mini-css-extract-plugin)
-to generate the CSS style 
-directly into the Webpack default output path.
-
-Optionally you can also generate the css and scss files to include directly
-into your application.
-
-See below [fonts webpack-multifonts-loader#cssdest](https://github.com/GilbertoTomasone/webpack-multifonts-loader#cssdest)
-
-See below [fonts webpack-multifonts-loader#scssdest](https://github.com/GilbertoTomasone/webpack-multifonts-loader#scssdest)
-
-See below [icons webpack-multifonts-loader#cssdest](https://github.com/GilbertoTomasone/webpack-multifonts-loader#cssdest-1)
-
-See below [icons webpack-multifonts-loader#scssdest](https://github.com/GilbertoTomasone/webpack-multifonts-loader#scssdest-1)
-
-
-```javascript
-{
-  test: /multifonts\.loader\.js/,
-  use: [
-    MiniCssExtractPlugin.loader,
-    'css-loader',
-    'multifonts-loader'
-  ]
-}
-```
-
-### Loader Options
-
-Extend the loader configuration by including all the available options
-directly into the rule definition.
-
-See below [webpack-multifonts-loader#options](https://github.com/GilbertoTomasone/webpack-multifonts-loader#options)
-
-*Example:*
-
-You can override the fontFilename depending on the environment.
-
-See below [fonts webpack-multifonts-loader#fontfilename](https://github.com/GilbertoTomasone/webpack-multifonts-loader#fontfilename)
-
-See below [icons webpack-multifonts-loader#fontfilename](https://github.com/GilbertoTomasone/webpack-multifonts-loader#fontfilename-1)
-
-```javascript
-{
-  test: /multifonts\.loader\.js/,
-  use: [
-    MiniCssExtractPlugin.loader,
-    'css-loader',
-    {
-      loader: 'multifonts-loader',
-      options: {
-          fonts: {
-            fontFilename: isDevelopment
-              ? '[fontname].[chunkhash].[ext]?[hash]'
-              : '[chunkhash].[ext]?[hash]'
-             // ...
-             // Add any other available option
-          },
-          icons: {
-            fontFilename: isDevelopment
-              ? '[fontname].[chunkhash].[ext]?[hash]'
-              : '[chunkhash].[ext]?[hash]'
-             // ...
-             // Add any other available option
-          }
-      }
-    }
-  ]
-}
-```
-
-## Integration
-
-Include the configuration file into your app.
-
-`app.js`
-
-```javascript
-require('multifonts.loader');
-```
-
 ## Configuration
 
-The configuration file defines two main sections: 
+Create one or multiple configuration files for your fonts and iconfonts.
 
-#### `fonts`
+See below [webpack-multifonts-loader#options](#options)
 
-Responsible to locate and process the font families 
-   to generate the respective fontfaces.
- 
-Optionally, you can decide to generate the fontfaces CSS and/or the SCSS 
-files to a specified location for you to include in your application.
-   
-#### `icons`
-
-Responsible to locate and process the svg files to generate the 
-respective iconfonts.
-    
-Optionally, you can decide to generate the iconfont CSS and/or the SCSS 
-files to a specified location for you to include in your application. 
+***`multifonts.loader.js`***
 
 ```javascript
 const path = require('path');
@@ -265,6 +162,118 @@ module.exports = {
   }
 };
 ```
+
+The configuration file defines two main sections: 
+
+#### `fonts`
+
+Responsible to locate and process the font families 
+   to generate the respective fontfaces.
+ 
+Optionally, you can decide to generate the fontfaces CSS and/or the SCSS 
+files to a specified location for you to include in your application.
+   
+#### `icons`
+
+Responsible to locate and process the svg files to generate the 
+respective iconfonts.
+    
+Optionally, you can decide to generate the iconfont CSS and/or the SCSS 
+files to a specified location for you to include in your application. 
+
+## Setup
+
+### Webpack Rule
+
+```javascript
+{
+  test: /multifonts\.loader\.js/,
+  use: [
+    MiniCssExtractPlugin.loader,
+    'css-loader',
+    'multifonts-loader'
+  ]
+}
+```
+
+Create one or multiple 
+[configuration files](#configuration)
+for your fonts and iconfonts 
+and chain the 
+***multifonts-loader*** 
+with the 
+[css-loader](https://www.npmjs.com/package/css-loader)
+and 
+[MiniCssExtractPlugin.loader](https://www.npmjs.com/package/mini-css-extract-plugin)
+to generate the CSS style 
+directly into the Webpack default output path.
+
+Optionally you can also generate the css and scss files to include directly
+into your application.
+
+See below [fonts webpack-multifonts-loader#cssdest](#cssdest)
+
+See below [fonts webpack-multifonts-loader#scssdest](#scssdest)
+
+See below [icons webpack-multifonts-loader#cssdest](#cssdest-1)
+
+See below [icons webpack-multifonts-loader#scssdest](#scssdest-1)
+
+#### Loader Options
+
+Extend the loader configuration by including all the available options
+directly into the rule definition.
+
+See below [webpack-multifonts-loader#options](#options)
+
+```javascript
+{
+  test: /multifonts\.loader\.js/,
+  use: [
+    MiniCssExtractPlugin.loader,
+    'css-loader',
+    {
+      loader: 'multifonts-loader',
+      options: {
+          fonts: {
+            fontFilename: isDevelopment
+              ? '[fontname].[chunkhash].[ext]?[hash]'
+              : '[chunkhash].[ext]?[hash]'
+             // ...
+             // Add any other available option
+          },
+          icons: {
+            fontFilename: isDevelopment
+              ? '[fontname].[chunkhash].[ext]?[hash]'
+              : '[chunkhash].[ext]?[hash]'
+             // ...
+             // Add any other available option
+          }
+      }
+    }
+  ]
+}
+```
+
+*Example:*
+
+You can override the fontFilename depending on the environment.
+
+See below [fonts webpack-multifonts-loader#fontfilename](#fontfilename)
+
+See below [icons webpack-multifonts-loader#fontfilename](#fontfilename-1)
+
+## Integration
+
+Include the configuration file into your app.
+
+`app.js`
+
+```javascript
+require('multifonts.loader');
+```
+
+# APPENDINX
 
 ## Options
 
