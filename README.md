@@ -36,7 +36,7 @@ $ npm install multifonts-loader
 <span class="[ICON_BASE_SELECTOR] [ICON_CLASS_PREFIX]-[SVG_FILE_NAME]"></span>
 ```
 
-*Example*
+*Example:*
 
 ```html
 <span class="font-Roboto-ThinItalic"></span>
@@ -50,15 +50,15 @@ $ npm install multifonts-loader
 
 #### Mixin: `webfont`
 
-```sass
-@include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
-```
-
 | Name                 | Required | Default  | Type           | Description                                                                                                          |
 |----------------------|----------|----------|----------------|----------------------------------------------------------------------------------------------------------------------|
 | **`FONT_FILE_NAME`** | `true`   | `''`     | `{String}`     | Specifies the name of the font-family to use. For generated fonts the font-family is derived from the font filename. |
 | **`FONT_WEIGHT`**    | `false`  | `normal` | `css standard` | Sets how thick or thin characters in text should be displayed                                                        |
 | **`FONT_STYLE`**     | `false`  | `normal` | `css standard` | Specifies the font style for a text                                                                                  |
+
+```sass
+@include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
+```
 
 *Example:*
 
@@ -74,10 +74,6 @@ p
 
 #### Mixin: `webfont-icon`
 
-```sass
-@include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
-```
-
 | Name                | Required | Default   | Type              | Description                                                                |
 |---------------------|----------|-----------|-------------------|----------------------------------------------------------------------------|
 | **`SVG_FILE_NAME`** | `true`   | `''`      | `{String}`        | Specifies the name of the icon to use. It is derived from the svg filename |
@@ -86,6 +82,10 @@ p
 | **`ICON_SIZE`**     | `false`  | `inherit` | `css standard`    | Specifies the size of the icon                                             |
 | **`ICON_WEIGHT`**   | `false`  | `normal`  | `css standard`    | Sets how thick or thin characters in text should be displayed              |
 | **`ICON_STYLE`**    | `false`  | `normal`  | `css standard`    | Specifies the font style for the icon                                      |
+
+```sass
+@include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
+```
 
 *Example:*
 
@@ -100,8 +100,6 @@ span
 ## Configuration
 
 Create one or multiple configuration files for your fonts and iconfonts.
-
-See below [webpack-multifonts-loader#options](#options)
 
 ***`multifonts.loader.js`***
 
@@ -163,6 +161,8 @@ module.exports = {
 };
 ```
 
+See below [webpack-multifonts-loader#options](#options)
+
 The configuration file defines two main sections: 
 
 #### `fonts`
@@ -196,10 +196,7 @@ files to a specified location for you to include in your application.
 }
 ```
 
-Create one or multiple 
-[configuration files](#configuration)
-for your fonts and iconfonts 
-and chain the 
+Chain the 
 ***multifonts-loader*** 
 with the 
 [css-loader](https://www.npmjs.com/package/css-loader)
@@ -225,6 +222,10 @@ Extend the loader configuration by including all the available options
 directly into the rule definition.
 
 See below [webpack-multifonts-loader#options](#options)
+
+*Example:*
+
+You can override the fontFilename depending on the environment.
 
 ```javascript
 {
@@ -255,10 +256,6 @@ See below [webpack-multifonts-loader#options](#options)
 }
 ```
 
-*Example:*
-
-You can override the fontFilename depending on the environment.
-
 See below [fonts webpack-multifonts-loader#fontfilename](#fontfilename)
 
 See below [icons webpack-multifonts-loader#fontfilename](#fontfilename-1)
@@ -277,7 +274,7 @@ require('multifonts.loader');
 
 ## Options
 
-### fonts
+### `fonts`
 
 ```javascript
 fonts: {
@@ -303,6 +300,25 @@ fonts: {
     }
 }
 ```
+
+#### Options
+
+| Name                                                | Type       | Required | Default                          |
+|-----------------------------------------------------|------------|----------|----------------------------------|
+| **[`files`](#files)**                               | `{Array}`  | `true`   | `undefined`                      |
+| **[`inputPath`](#inputPath)**                       | `{String}` | `true`   | `undefined`                      |
+| **[`outputPath`](#outputPath)**                     | `{String}` | `false`  | `iconfont/`                      |
+| **[`fontFilename`](#fontFilename)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`        |
+| **[`cssDest`](#cssDest)**                           | `{String}` | `false`  | `false`                          |
+| **[`cssFilename`](#cssFilename)**                   | `{String}` | `false`  | `iconfont`                       |
+| **[`scssDest`](#scssDest)**                         | `{String}` | `false`  | `false`                          |
+| **[`scssFilename`](#scssFilename)**                 | `{String}` | `false`  | `iconfont`                       |
+| **[`fontfaceTemplateCSS`](#fontfaceTemplateCSS)**   | `{String}` | `false`  | `../templates/fontface-css.hbs`  |
+| **[`fontfaceTemplateSCSS`](#fontfaceTemplateSCSS)** | `{String}` | `false`  | `../templates/fontface-scss.hbs` |
+| **[`templateOptions`](#templateOptions)**           | `{Object}` | `false`  | `{}`                             |
+| **[`templateOptions.classPrefix`](#classPrefix)**   | `{String}` | `false`  | `font-`                          |
+| **[`templateOptions.mixinName`](#mixinName)**       | `{String}` | `false`  | `webfont`                        |
+
 #### `files`
 
 Required: `true`
@@ -337,6 +353,12 @@ The path relative to the default Webpack output folder where to save
 the fonts files.
 
 #### `fontFilename`
+
+Required: `false`
+
+Type: `String`
+
+Default: `[fontname].[hash].[ext]`
 
 See [webfonts-loader#filename-string](https://github.com/jeerbl/webfonts-loader#filename-string)
 
@@ -449,7 +471,7 @@ Default: `webfont`
 
 The name of the scss mixin to call when including the font.
 
-### icons
+### `icons`
 
 ```javascript
 icons: {
@@ -482,6 +504,30 @@ icons: {
     }
 }
 ```
+
+#### Options
+
+| Name                                                | Type       | Required | Default                                  |
+|-----------------------------------------------------|------------|----------|------------------------------------------|
+| **[`files`](#files)**                               | `{Array}`  | `true`   | `undefined`                              |
+| **[`inputPath`](#inputPath)**                       | `{String}` | `true`   | `undefined`                              |
+| **[`outputPath`](#outputPath)**                     | `{String}` | `false`  | `fonts/`                                 |
+| **[`types`](#types)**                               | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
+| **[`order`](#order)**                               | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
+| **[`publicPath`](#publicPath)**                     | `{String}` | `false`  | `/`                                      |
+| **[`fontName`](#fontName)**                         | `{String}` | `false`  | `IconFont`                               |
+| **[`fontFilename`](#fontFilename)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`                |
+| **[`cssDest`](#cssDest)**                           | `{String}` | `false`  | `false`                                  |
+| **[`cssFilename`](#cssFilename)**                   | `{String}` | `false`  | `iconfont`                               |
+| **[`scssDest`](#scssDest)**                         | `{String}` | `false`  | `false`                                  |
+| **[`scssFilename`](#scssFilename)**                 | `{String}` | `false`  | `fonts`                                  |
+| **[`cssTemplate`](#cssTemplate)**                   | `{String}` | `false`  | `../templates/css.hbs`                   |
+| **[`scssTemplate`](#scssTemplate)**                 | `{String}` | `false`  | `../templates/scss.hbs`                  |
+| **[`templateOptions`](#templateOptions)**           | `{Object}` | `false`  | `{}`                                     |
+| **[`templateOptions.baseSelector`](#baseSelector)** | `{String}` | `false`  | `icon`                                   |
+| **[`templateOptions.classPrefix`](#classPrefix)**   | `{String}` | `false`  | `icon-`                                  |
+| **[`templateOptions.mixinName`](#mixinName)**       | `{String}` | `false`  | `webfont-icon`                           |
+
 #### `files`
 
 Required: `true`
@@ -516,21 +562,51 @@ the svg iconfont files.
 
 #### `types`
 
+Required: `false`
+
+Type: `Array`
+
+Default: `['eot', 'woff', 'woff2', 'ttf', 'svg']`
+
 See [webfonts-generator#types](https://github.com/vusion/webfonts-generator/#types)
 
 #### `order`
+
+Required: `false`
+
+Type: `Array`
+
+Default: `['eot', 'woff', 'woff2', 'ttf', 'svg']`
 
 See [webfonts-generator#order](https://github.com/vusion/webfonts-generator/#order)
 
 #### `publicPath`
 
+Required: `false`
+
+Type: `String`
+
+Default: `/`
+
 See [webfonts-loader#publicpath-string](https://github.com/jeerbl/webfonts-loader#publicpath-string)
 
 #### `fontName`
 
+Required: `false`
+
+Type: `String`
+
+Default: `IconFont`
+
 See [webfonts-generator#fontname](https://github.com/vusion/webfonts-generator#fontname)
 
 #### `fontFilename`
+
+Required: `false`
+
+Type: `String`
+
+Default: `[fontname].[hash].[ext]`
 
 See [webfonts-loader#filename-string](https://github.com/jeerbl/webfonts-loader#filename-string)
 
