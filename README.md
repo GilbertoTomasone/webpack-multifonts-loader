@@ -306,18 +306,18 @@ fonts: {
 | Name                                                | Type       | Required | Default                          |
 |-----------------------------------------------------|------------|----------|----------------------------------|
 | **[`files`](#files)**                               | `{Array}`  | `true`   | `undefined`                      |
-| **[`inputPath`](#inputPath)**                       | `{String}` | `true`   | `undefined`                      |
-| **[`outputPath`](#outputPath)**                     | `{String}` | `false`  | `iconfont/`                      |
-| **[`fontFilename`](#fontFilename)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`        |
+| **[`inputPath`](#inputpath)**                       | `{String}` | `true`   | `undefined`                      |
+| **[`outputPath`](#outputpath)**                     | `{String}` | `false`  | `iconfont/`                      |
+| **[`fontFilename`](#fontfilename)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`        |
 | **[`cssDest`](#cssDest)**                           | `{String}` | `false`  | `false`                          |
-| **[`cssFilename`](#cssFilename)**                   | `{String}` | `false`  | `iconfont`                       |
-| **[`scssDest`](#scssDest)**                         | `{String}` | `false`  | `false`                          |
-| **[`scssFilename`](#scssFilename)**                 | `{String}` | `false`  | `iconfont`                       |
-| **[`fontfaceTemplateCSS`](#fontfaceTemplateCSS)**   | `{String}` | `false`  | `../templates/fontface-css.hbs`  |
-| **[`fontfaceTemplateSCSS`](#fontfaceTemplateSCSS)** | `{String}` | `false`  | `../templates/fontface-scss.hbs` |
-| **[`templateOptions`](#templateOptions)**           | `{Object}` | `false`  | `{}`                             |
-| **[`templateOptions.classPrefix`](#classPrefix)**   | `{String}` | `false`  | `font-`                          |
-| **[`templateOptions.mixinName`](#mixinName)**       | `{String}` | `false`  | `webfont`                        |
+| **[`cssFilename`](#cssfilename)**                   | `{String}` | `false`  | `iconfont`                       |
+| **[`scssDest`](#scssdest)**                         | `{String}` | `false`  | `false`                          |
+| **[`scssFilename`](#scssfilename)**                 | `{String}` | `false`  | `iconfont`                       |
+| **[`fontfaceTemplateCSS`](#fontfacetemplatecss)**   | `{String}` | `false`  | `../templates/fontface-css.hbs`  |
+| **[`fontfaceTemplateSCSS`](#fontfacetemplatescss)** | `{String}` | `false`  | `../templates/fontface-scss.hbs` |
+| **[`templateOptions`](#templateoptions)**           | `{Object}` | `false`  | `{}`                             |
+| **[`templateOptions.classPrefix`](#classprefix)**   | `{String}` | `false`  | `font-`                          |
+| **[`templateOptions.mixinName`](#mixinname)**       | `{String}` | `false`  | `webfont`                        |
 
 #### `files`
 
@@ -510,23 +510,23 @@ icons: {
 | Name                                                | Type       | Required | Default                                  |
 |-----------------------------------------------------|------------|----------|------------------------------------------|
 | **[`files`](#files)**                               | `{Array}`  | `true`   | `undefined`                              |
-| **[`inputPath`](#inputPath)**                       | `{String}` | `true`   | `undefined`                              |
-| **[`outputPath`](#outputPath)**                     | `{String}` | `false`  | `fonts/`                                 |
+| **[`inputPath`](#inputpath)**                       | `{String}` | `true`   | `undefined`                              |
+| **[`outputPath`](#outputpath)**                     | `{String}` | `false`  | `fonts/`                                 |
 | **[`types`](#types)**                               | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
 | **[`order`](#order)**                               | `{Array}`  | `false`  | `['eot', 'woff', 'woff2', 'ttf', 'svg']` |
-| **[`publicPath`](#publicPath)**                     | `{String}` | `false`  | `/`                                      |
-| **[`fontName`](#fontName)**                         | `{String}` | `false`  | `IconFont`                               |
-| **[`fontFilename`](#fontFilename)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`                |
+| **[`publicPath`](#publicpath)**                     | `{String}` | `false`  | `/`                                      |
+| **[`fontName`](#fontname)**                         | `{String}` | `false`  | `IconFont`                               |
+| **[`fontFilename`](#fontfilename)**                 | `{String}` | `false`  | `[fontname].[hash].[ext]`                |
 | **[`cssDest`](#cssDest)**                           | `{String}` | `false`  | `false`                                  |
-| **[`cssFilename`](#cssFilename)**                   | `{String}` | `false`  | `iconfont`                               |
-| **[`scssDest`](#scssDest)**                         | `{String}` | `false`  | `false`                                  |
-| **[`scssFilename`](#scssFilename)**                 | `{String}` | `false`  | `fonts`                                  |
-| **[`cssTemplate`](#cssTemplate)**                   | `{String}` | `false`  | `../templates/css.hbs`                   |
-| **[`scssTemplate`](#scssTemplate)**                 | `{String}` | `false`  | `../templates/scss.hbs`                  |
-| **[`templateOptions`](#templateOptions)**           | `{Object}` | `false`  | `{}`                                     |
-| **[`templateOptions.baseSelector`](#baseSelector)** | `{String}` | `false`  | `icon`                                   |
-| **[`templateOptions.classPrefix`](#classPrefix)**   | `{String}` | `false`  | `icon-`                                  |
-| **[`templateOptions.mixinName`](#mixinName)**       | `{String}` | `false`  | `webfont-icon`                           |
+| **[`cssFilename`](#cssfilename)**                   | `{String}` | `false`  | `iconfont`                               |
+| **[`scssDest`](#scssdest)**                         | `{String}` | `false`  | `false`                                  |
+| **[`scssFilename`](#scssfilename)**                 | `{String}` | `false`  | `fonts`                                  |
+| **[`cssTemplate`](#csstemplate)**                   | `{String}` | `false`  | `../templates/css.hbs`                   |
+| **[`scssTemplate`](#scsstemplate)**                 | `{String}` | `false`  | `../templates/scss.hbs`                  |
+| **[`templateOptions`](#templateoptions)**           | `{Object}` | `false`  | `{}`                                     |
+| **[`templateOptions.baseSelector`](#baseselector)** | `{String}` | `false`  | `icon`                                   |
+| **[`templateOptions.classPrefix`](#classprefix)**   | `{String}` | `false`  | `icon-`                                  |
+| **[`templateOptions.mixinName`](#mixinname)**       | `{String}` | `false`  | `webfont-icon`                           |
 
 #### `files`
 
