@@ -34,7 +34,13 @@ $ npm install multifonts-loader
 <span class="[FONT_CLASS_PREFIX]-[FONT_FILE_NAME]"></span>
 
 <span class="[ICON_BASE_SELECTOR] [ICON_CLASS_PREFIX]-[SVG_FILE_NAME]"></span>
+
+<span class="[ICON_BASE_SELECTOR] [ICON_CLASS_PREFIX]-[SVG_FILE_NAME]-after"></span>
 ```
+
+`NOTE:` You can specify the position of the icon by appending the word `'-after'`
+to its default selector.
+By default the icon will be added `before`.
 
 *Example:*
 
@@ -42,6 +48,8 @@ $ npm install multifonts-loader
 <span class="font-Roboto-ThinItalic"></span>
 
 <span class="icon icon-arrow"></span>
+
+<span class="icon icon-arrow-after"></span>
 ```
 
 #### Options
