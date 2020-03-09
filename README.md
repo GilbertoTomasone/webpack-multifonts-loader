@@ -28,14 +28,6 @@ $ npm install multifonts-loader
 
 ### `Inject classes in the markup`
 
-| Name                                      | Required | Default | Description                              |
-|-------------------------------------------|----------|---------|------------------------------------------|
-| **[`FONT_CLASS_PREFIX`](#classprefix)**   | `true`   | font-   | Specifies the class prefix for the font  |
-| **`FONT_FILE_NAME`**                      | `true`   | ''      | Specifies the font-family name           |
-| **[`ICON_BASE_SELECTOR`](#baseselector)** | `true`   | icon    | Specifies the base selector for the icon |
-| **[`ICON_CLASS_PREFIX`](#classprefix-1)** | `true`   | icon-   | Specifies the class prefix for the icon  |
-| **`SVG_FILE_NAME`**                       | `true`   | ''      | Specifies the icon name                  |
-
 #### `*.html`
 
 ```html
@@ -52,15 +44,20 @@ $ npm install multifonts-loader
 <span class="icon icon-arrow"></span>
 ```
 
+#### Options
+
+| Name                                      | Required | Default | Description                              |
+|-------------------------------------------|----------|---------|------------------------------------------|
+| **[`FONT_CLASS_PREFIX`](#classprefix)**   | `true`   | font-   | Specifies the class prefix for the font  |
+| **`FONT_FILE_NAME`**                      | `true`   | ''      | Specifies the font-family name           |
+| **[`ICON_BASE_SELECTOR`](#baseselector)** | `true`   | icon    | Specifies the base selector for the icon |
+| **[`ICON_CLASS_PREFIX`](#classprefix-1)** | `true`   | icon-   | Specifies the class prefix for the icon  |
+| **`SVG_FILE_NAME`**                       | `true`   | ''      | Specifies the icon name                  |
+
+
 ### `Import the scss files and use the mixins`
 
 #### Mixin: `webfont`
-
-| Name                 | Required | Default  | Type           | Description                                                                                                          |
-|----------------------|----------|----------|----------------|----------------------------------------------------------------------------------------------------------------------|
-| **`FONT_FILE_NAME`** | `true`   | `''`     | `{String}`     | Specifies the name of the font-family to use. For generated fonts the font-family is derived from the font filename. |
-| **`FONT_WEIGHT`**    | `false`  | `normal` | `css standard` | Sets how thick or thin characters in text should be displayed                                                        |
-| **`FONT_STYLE`**     | `false`  | `normal` | `css standard` | Specifies the font style for a text                                                                                  |
 
 #### `*.sass`
 
@@ -80,16 +77,16 @@ p
   @include webfont('Roboto-ThinItalic')
 ```
 
-#### Mixin: `webfont-icon`
+#### Options
 
-| Name                | Required | Default   | Type              | Description                                                                |
-|---------------------|----------|-----------|-------------------|----------------------------------------------------------------------------|
-| **`SVG_FILE_NAME`** | `true`   | `''`      | `{String}`        | Specifies the name of the icon to use. It is derived from the svg filename |
-| **`ICON_POSITION`** | `false`  | `before`  | `[before,after]`  | The position of the icon relative to the current element                   |
-| **`ICON_ALIGN`**    | `false`  | `top`     | `css standard`    | Specifies the alignment of the icon                                        |
-| **`ICON_SIZE`**     | `false`  | `inherit` | `css standard`    | Specifies the size of the icon                                             |
-| **`ICON_WEIGHT`**   | `false`  | `normal`  | `css standard`    | Sets how thick or thin characters in text should be displayed              |
-| **`ICON_STYLE`**    | `false`  | `normal`  | `css standard`    | Specifies the font style for the icon                                      |
+| Name                 | Required | Default  | Type           | Description                                                                                                          |
+|----------------------|----------|----------|----------------|----------------------------------------------------------------------------------------------------------------------|
+| **`FONT_FILE_NAME`** | `true`   | `''`     | `{String}`     | Specifies the name of the font-family to use. For generated fonts the font-family is derived from the font filename. |
+| **`FONT_WEIGHT`**    | `false`  | `normal` | `css standard` | Sets how thick or thin characters in text should be displayed                                                        |
+| **`FONT_STYLE`**     | `false`  | `normal` | `css standard` | Specifies the font style for a text                                                                                  |
+
+
+#### Mixin: `webfont-icon`
 
 #### `*.sass`
 
@@ -106,6 +103,18 @@ span
   @include webfont-icon('calendar', 'before', 'middle', '16px', 'bold', 'italic')
   @include webfont-icon('arrow', 'after')
 ```
+
+#### Options
+
+| Name                | Required | Default   | Type              | Description                                                                |
+|---------------------|----------|-----------|-------------------|----------------------------------------------------------------------------|
+| **`SVG_FILE_NAME`** | `true`   | `''`      | `{String}`        | Specifies the name of the icon to use. It is derived from the svg filename |
+| **`ICON_POSITION`** | `false`  | `before`  | `[before,after]`  | The position of the icon relative to the current element                   |
+| **`ICON_ALIGN`**    | `false`  | `top`     | `css standard`    | Specifies the alignment of the icon                                        |
+| **`ICON_SIZE`**     | `false`  | `inherit` | `css standard`    | Specifies the size of the icon                                             |
+| **`ICON_WEIGHT`**   | `false`  | `normal`  | `css standard`    | Sets how thick or thin characters in text should be displayed              |
+| **`ICON_STYLE`**    | `false`  | `normal`  | `css standard`    | Specifies the font style for the icon                                      |
+
 
 ## Configuration
 
