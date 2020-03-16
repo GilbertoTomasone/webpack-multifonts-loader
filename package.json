@@ -1,6 +1,6 @@
 {
   "name": "multifonts-loader",
-  "version": "3.2.1",
+  "version": "3.2.2",
   "description": "A webpack loader to generate all your fontfaces and iconfonts in one go.",
   "main": "./index.js",
   "scripts": {
@@ -30,11 +30,11 @@
     "@vusion/webfonts-generator": "^0.6.0",
     "crypto": "^1.0.1",
     "glob": "^7.1.6",
-    "loader-utils": "^1.2.3",
+    "loader-utils": "^1.4.0",
     "lodash": "^4.17.15",
     "mkdirp": "^1.0.3",
     "path": "^0.12.7",
-    "schema-utils": "^2.6.4",
+    "schema-utils": "^2.6.5",
     "url": "^0.11.0"
   },
   "devDependencies": {
