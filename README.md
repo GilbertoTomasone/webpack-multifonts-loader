@@ -783,7 +783,7 @@ $ npm run test-build
 $ npm run test-dev
 ```
 
-## References & Shout-out
+## Thanks
 
 * Inpired by [webfonts-loader](https://github.com/jeerbl/webfonts-loader)
 * Made possible by [webfonts-generator](https://github.com/vusion/webfonts-generator)
