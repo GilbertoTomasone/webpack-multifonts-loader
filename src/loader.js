@@ -136,170 +136,171 @@ function loader (content, map, meta) {
       const fontsCssFilename = fontsOptions.cssDest.concat(`${fontsOptions.cssFilename}.css`);
       fs.writeFileSync(fontsCssFilename, fontfacesCSS);
     }
+  }
 
-    /* Return the fontface CSS string if there are not icons to process
+  /* Return the fontface CSS string if there are not icons to process
     ============================================================================= */
-    if (icons.filesFound.length === 0) {
-      callback(null, [
-        `${fontfacesCSS}`
-      ].join('\n'));
-    }
+  if (icons.filesFound.length === 0) {
+    callback(null, [
+      `${fontfacesCSS}`
+    ].join('\n'));
   }
 
   /* ICONS
   ============================================================================= */
+  if (icons.filesFound.length > 0) {
+    /* Initialise webfontsGenerator options
+     *
+     * files:
+     * types:
+     * order:
+     * fontName:
+     * fileName:
+     * writeFiles:
+     * dest:
+     * publicPath:
+     * cssFilename:
+     * cssDest:
+     * scssFilename:
+     * scssDest:
+     * cssTemplate:
+     * scssTemplate:
+     * templateOptions:
+     * - baseSelector:
+     * - classPrefix:
+     * - mixinName
+    ============================================================================= */
+    const cssTemplate = path.resolve(__dirname, '../templates', 'css.hbs');
+    const scssTemplate = path.resolve(__dirname, '../templates', 'scss.hbs');
+    assetConfig.icons.templateOptions = assetConfig.icons.templateOptions || {};
+    let webfontsOptions = {
+      files: icons.filesFound,
+      types: assetConfig.icons.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
+      order: assetConfig.icons.order || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
+      fontName: assetConfig.icons.fontName || 'IconFont',
+      fileName: assetConfig.icons.fontFilename || '[fontname].[hash].[ext]',
+      writeFiles: false, /* always keep it to false */
+      dest: assetConfig.icons.outputPath || 'iconfont', /* relative to the Webpack output folder */
+      publicPath: assetConfig.icons.publicPath || '/',
+      /* extension */cssFilename: assetConfig.icons.cssFilename || 'iconfont',
+      cssDest: assetConfig.icons.cssDest || false,
+      cssTemplate: assetConfig.icons.cssTemplate || cssTemplate,
+      /* extension */scssFilename: assetConfig.icons.scssFilename || 'iconfont',
+      /* extension */scssDest: assetConfig.icons.scssDest || 'iconfont',
+      /* extension */scssTemplate: assetConfig.icons.scssTemplate || scssTemplate,
+      templateOptions: Object.assign({
+        baseSelector: assetConfig.icons.templateOptions.cssClassSelector || 'icon',
+        classPrefix: assetConfig.icons.templateOptions.cssClassPrefix || 'icon-',
+        /* extension */mixinName: assetConfig.icons.templateOptions.scssMixinName || 'webfont-icon'
+      }, assetConfig.icons.templateOptions)
+    };
 
-  /* Initialise webfontsGenerator options
-   *
-   * files:
-   * types:
-   * order:
-   * fontName:
-   * fileName:
-   * writeFiles:
-   * dest:
-   * publicPath:
-   * cssFilename:
-   * cssDest:
-   * scssFilename:
-   * scssDest:
-   * cssTemplate:
-   * scssTemplate:
-   * templateOptions:
-   * - baseSelector:
-   * - classPrefix:
-   * - mixinName
-  ============================================================================= */
-  const cssTemplate = path.resolve(__dirname, '../templates', 'css.hbs');
-  const scssTemplate = path.resolve(__dirname, '../templates', 'scss.hbs');
-  assetConfig.icons.templateOptions = assetConfig.icons.templateOptions || {};
-  let webfontsOptions = {
-    files: icons.filesFound,
-    types: assetConfig.icons.types || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
-    order: assetConfig.icons.order || ['eot', 'woff', 'woff2', 'ttf', 'svg'],
-    fontName: assetConfig.icons.fontName || 'IconFont',
-    fileName: assetConfig.icons.fontFilename || '[fontname].[hash].[ext]',
-    writeFiles: false, /* always keep it to false */
-    dest: assetConfig.icons.outputPath || 'iconfont', /* relative to the Webpack output folder */
-    publicPath: assetConfig.icons.publicPath || '/',
-    /* extension */cssFilename: assetConfig.icons.cssFilename || 'iconfont',
-    cssDest: assetConfig.icons.cssDest || false,
-    cssTemplate: assetConfig.icons.cssTemplate || cssTemplate,
-    /* extension */scssFilename: assetConfig.icons.scssFilename || 'iconfont',
-    /* extension */scssDest: assetConfig.icons.scssDest || 'iconfont',
-    /* extension */scssTemplate: assetConfig.icons.scssTemplate || scssTemplate,
-    templateOptions: Object.assign({
-      baseSelector: assetConfig.icons.templateOptions.cssClassSelector || 'icon',
-      classPrefix: assetConfig.icons.templateOptions.cssClassPrefix || 'icon-',
-      /* extension */mixinName: assetConfig.icons.templateOptions.scssMixinName || 'webfont-icon'
-    }, assetConfig.icons.templateOptions)
-  };
+    // Override options with the one provided by the loader webpack main configuration
+    if (typeof options.icons === 'object') {
+      webfontsOptions = Object.assign(webfontsOptions, options.icons);
+    }
 
-  // Override options with the one provided by the loader webpack main configuration
-  if (typeof options.icons === 'object') {
-    webfontsOptions = Object.assign(webfontsOptions, options.icons);
-  }
+    // Add trailing slash to paths
+    if (webfontsOptions.dest.substr(-1) !== '/') webfontsOptions.dest += '/';
+    if (webfontsOptions.cssDest !== false && webfontsOptions.cssDest.substr(-1) !== '/') webfontsOptions.cssDest += '/';
+    if (webfontsOptions.scssDest !== false && webfontsOptions.scssDest.substr(-1) !== '/') webfontsOptions.scssDest += '/';
 
-  // Add trailing slash to paths
-  if (webfontsOptions.dest.substr(-1) !== '/') webfontsOptions.dest += '/';
-  if (webfontsOptions.cssDest !== false && webfontsOptions.cssDest.substr(-1) !== '/') webfontsOptions.cssDest += '/';
-  if (webfontsOptions.scssDest !== false && webfontsOptions.scssDest.substr(-1) !== '/') webfontsOptions.scssDest += '/';
-
-  // Calculate publicPath
-  var publicPath;
-  if (typeof webfontsOptions.publicPath === 'string') {
-    if (webfontsOptions.publicPath === '' || webfontsOptions.publicPath.endsWith('/')) {
-      publicPath = webfontsOptions.publicPath;
+    // Calculate publicPath
+    var publicPath;
+    if (typeof webfontsOptions.publicPath === 'string') {
+      if (webfontsOptions.publicPath === '' || webfontsOptions.publicPath.endsWith('/')) {
+        publicPath = webfontsOptions.publicPath;
+      } else {
+        publicPath = `${webfontsOptions.publicPath}/`;
+      }
     } else {
-      publicPath = `${webfontsOptions.publicPath}/`;
+      if (typeof webfontsOptions.publicPath === 'function') {
+        publicPath = webfontsOptions.publicPath(this.resourcePath, this.rootContext);
+      } else {
+        publicPath = this._compilation.outputOptions.publicPath || '/';
+      }
     }
-  } else {
-    if (typeof webfontsOptions.publicPath === 'function') {
-      publicPath = webfontsOptions.publicPath(this.resourcePath, this.rootContext);
-    } else {
-      publicPath = this._compilation.outputOptions.publicPath || '/';
-    }
-  }
-  webfontsOptions.publicPath = publicPath;
+    webfontsOptions.publicPath = publicPath;
 
-  // Update files dependency
-  this.addDependency.bind(webfontsOptions.cssTemplate);
-  this.addDependency.bind(webfontsOptions.scssTemplate);
+    // Update files dependency
+    this.addDependency.bind(webfontsOptions.cssTemplate);
+    this.addDependency.bind(webfontsOptions.scssTemplate);
 
-  /* Generate CSS iconfonts
-  ============================================================================= */
-  webfontsGenerator(webfontsOptions, (err, result) => {
-    if (err) {
-      return callback(err);
-    }
-
-    const urls = {};
-    const formats = webfontsOptions.types;
-
-    /* Emit the font files to the output Webpack destination
+    /* Generate CSS iconfonts
     ============================================================================= */
-    formats.forEach((format) => {
-      const filename = utils.generateFontFilename(
-        this,
-        webfontsOptions.fontName,
-        webfontsOptions.fileName,
-        result[format],
-        format
-      );
-      const fontFilename = webfontsOptions.dest.concat(filename);
-      urls[format] = webfontsOptions.publicPath.concat(fontFilename.replace(/\\/g, '/'));
-      this.emitFile(fontFilename, result[format]);
-    });
+    webfontsGenerator(webfontsOptions, (err, result) => {
+      if (err) {
+        return callback(err);
+      }
 
-    /* Generate the CSS string
-    ============================================================================= */
-    const css = result.generateCss(urls);
+      const urls = {};
+      const formats = webfontsOptions.types;
 
-    /* Write to disk the CSS file (OPTIONAL)
-    ============================================================================= */
-    if (webfontsOptions.cssDest) {
-      // Create the destination folder
-      mkdirp.sync(webfontsOptions.cssDest);
+      /* Emit the font files to the output Webpack destination
+      ============================================================================= */
+      formats.forEach((format) => {
+        const filename = utils.generateFontFilename(
+          this,
+          webfontsOptions.fontName,
+          webfontsOptions.fileName,
+          result[format],
+          format
+        );
+        const fontFilename = webfontsOptions.dest.concat(filename);
+        urls[format] = webfontsOptions.publicPath.concat(fontFilename.replace(/\\/g, '/'));
+        this.emitFile(fontFilename, result[format]);
+      });
 
-      // Write to disk the CSS file
-      const name = webfontsOptions.cssFilename || webfontsOptions.fontName;
-      const cssFilename = webfontsOptions.cssDest.concat(`${name}.css`);
-      fs.writeFileSync(cssFilename, result.generateCss(urls));
-    }
+      /* Generate the CSS string
+      ============================================================================= */
+      const css = result.generateCss(urls);
 
-    /* Write to disk the SCSS file (OPTIONAL)
-    ============================================================================= */
-    if (webfontsOptions.scssDest) {
-      webfontsGenerator(Object.assign(webfontsOptions, {
-        cssTemplate: webfontsOptions.scssTemplate
-      }), (err, result) => {
-        if (err) {
-          return callback(err);
-        }
-
+      /* Write to disk the CSS file (OPTIONAL)
+      ============================================================================= */
+      if (webfontsOptions.cssDest) {
         // Create the destination folder
-        mkdirp.sync(webfontsOptions.scssDest);
+        mkdirp.sync(webfontsOptions.cssDest);
 
-        // Write to disk the SCSS file
-        const scss = result.generateCss(urls);
-        const name = webfontsOptions.scssFilename || webfontsOptions.fontName;
-        const scssFilename = webfontsOptions.scssDest.concat(`${name}.scss`);
-        fs.writeFileSync(scssFilename, scss);
+        // Write to disk the CSS file
+        const name = webfontsOptions.cssFilename || webfontsOptions.fontName;
+        const cssFilename = webfontsOptions.cssDest.concat(`${name}.css`);
+        fs.writeFileSync(cssFilename, result.generateCss(urls));
+      }
 
-        /* Always return the CSS string
-        ============================================================================= */
+      /* Write to disk the SCSS file (OPTIONAL)
+      ============================================================================= */
+      if (webfontsOptions.scssDest) {
+        webfontsGenerator(Object.assign(webfontsOptions, {
+          cssTemplate: webfontsOptions.scssTemplate
+        }), (err, result) => {
+          if (err) {
+            return callback(err);
+          }
+
+          // Create the destination folder
+          mkdirp.sync(webfontsOptions.scssDest);
+
+          // Write to disk the SCSS file
+          const scss = result.generateCss(urls);
+          const name = webfontsOptions.scssFilename || webfontsOptions.fontName;
+          const scssFilename = webfontsOptions.scssDest.concat(`${name}.scss`);
+          fs.writeFileSync(scssFilename, scss);
+
+          /* Always return the CSS string
+          ============================================================================= */
+          callback(null, [
+            `${fontfacesCSS}`,
+            `${css}`
+          ].join('\n'));
+        });
+      } else {
         callback(null, [
           `${fontfacesCSS}`,
           `${css}`
         ].join('\n'));
-      });
-    } else {
-      callback(null, [
-        `${fontfacesCSS}`,
-        `${css}`
-      ].join('\n'));
-    }
-  });
+      }
+    });
+  }
 }
 
 exports.default = loader;
