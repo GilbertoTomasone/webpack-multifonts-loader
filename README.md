@@ -298,7 +298,7 @@ Include the configuration file into your app.
 require('multifonts.loader');
 ```
 
-# APPENDINX
+# APPENDIX
 
 ## Options
 
