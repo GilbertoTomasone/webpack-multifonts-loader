@@ -24,9 +24,40 @@ Loader for webpack to generate **fontfaces** from font families and **iconfonts*
 $ npm install multifonts-loader
 ```
 
+## Use Cases
+
+### Set `fonts` and `icons` into the MARKUP
+
+```html
+<span class="font-Roboto-ThinItalic"></span>
+
+<span class="icon icon-arrow"></span>
+<span class="icon icon-arrow-after"></span>
+```
+
+### Set `fonts` and `icons` with SASS
+
+```sass
+@import 'fonts/fonts'
+
+div
+  @include webfont('Arial', 'bold', 'italic')
+  
+p
+  @include webfont('Roboto-ThinItalic')
+```
+
+```sass
+@import 'iconfont/iconfont'
+
+span
+  @include webfont-icon('calendar', 'before', 'middle', '16px', 'bold', 'italic')
+  @include webfont-icon('arrow', 'after')
+```
+
 ## Usage
 
-### `Inject classes in the markup`
+### `Inject classes into the markup`
 
 #### `*.html`
 
