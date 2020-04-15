@@ -60,21 +60,29 @@ button
 ## Customize `fonts` and `icons` with SASS
 
 ```sass
-@import 'fonts/fonts'
-@import 'iconfont/iconfont'
-
 h1
   @include webfont('Arial', 'bold', 'italic')
+  @include webfont-icon('lock-close', 'before', 'baseline', '80%')
+  &:before
+    margin-right: 0.25em
 
 label
   @include webfont('Helvetica-Bold')
+  &[for="email"]
+    @include webfont-icon('email')
+  &[for="password"]
+    @include webfont-icon('key')
+  &:before
+    margin-right: 0.25em
 
 input
   @include webfont('Roboto-LightItalic')
 
 button
   @include webfont('Roboto-BoldItalic')
-  @include webfont-icon('lock', 'before', 'middle', '20px', 'bold', 'normal')
+  @include webfont-icon('lock', 'after', 'baseline', '16px', 'bold', 'normal')
+  &:after
+    margin-left: 0.25em
 ```
 
 ![login](images/login-custom.png)
