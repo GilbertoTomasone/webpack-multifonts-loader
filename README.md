@@ -175,7 +175,7 @@ span
 | **`ICON_STYLE`**    | `false`  | `normal`  | `css standard`    | Specifies the font style for the icon                                      |
 
 
-## Configuration
+## Loader Configuration
 
 Create one or multiple configuration files for your fonts and iconfonts.
 
@@ -260,7 +260,7 @@ respective iconfonts.
 Optionally, you can decide to generate the iconfont CSS and/or the SCSS 
 files to a specified location for you to include in your application. 
 
-## Setup
+## Webpack Setup
 
 ### Webpack Rule
 
