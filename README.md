@@ -24,7 +24,7 @@ Loader for webpack to generate **fontfaces** from font families and **iconfonts*
 $ npm install multifonts-loader
 ```
 
-## Use Cases
+# Use Cases
 
 ## Set `fonts` and `icons` into the MARKUP
 
@@ -79,7 +79,7 @@ button
 
 ![login](images/login-custom.png)
 
-## Syntax
+# Syntax
 
 ## Set `fonts` and `icons` into the MARKUP
 
@@ -175,7 +175,7 @@ span
 | **`ICON_STYLE`**    | `false`  | `normal`  | `css standard`    | Specifies the font style for the icon                                      |
 
 
-## Loader Configuration
+# Loader Configuration
 
 Create one or multiple configuration files for your fonts and iconfonts.
 
@@ -339,7 +339,7 @@ See below [fonts webpack-multifonts-loader#fontfilename](#fontfilename)
 
 See below [icons webpack-multifonts-loader#fontfilename](#fontfilename-1)
 
-## Integration
+# Integration
 
 Include the configuration file into your app.
 
@@ -827,18 +827,18 @@ Default: `webfont-icon`
 
 The name of the scss mixin to call when including the icons.
 
-## Tests
+# Tests
 
 ```
 $ npm run test-build
 $ npm run test-dev
 ```
 
-## Thanks
+# Thanks
 
 * Inpired by [webfonts-loader](https://github.com/jeerbl/webfonts-loader)
 * Made possible by [webfonts-generator](https://github.com/vusion/webfonts-generator)
 
-## Licence
+# Licence
 
 Public domain, see the `LICENCE` file.
