@@ -28,6 +28,8 @@ $ npm install multifonts-loader
 
 ## Set `fonts` and `icons` into the MARKUP
 
+![button](images/button-click.png)
+
 ```html
 <button 
   class="
@@ -40,9 +42,9 @@ $ npm install multifonts-loader
 </button>
 ```
 
-![button](images/button-click.png)
-
 ## Set `fonts` and `icons` with SASS
+
+![button](images/button-follow.png)
 
 ```sass
 @import 'fonts/fonts'
@@ -54,10 +56,9 @@ button
   @include webfont-icon('arrow', 'after')
 ```
 
-![button](images/button-follow.png)
-
-
 ## Customize `fonts` and `icons` with SASS
+
+![login](images/login-custom.png)
 
 ```sass
 h1
@@ -84,8 +85,6 @@ button
   &:after
     margin-left: 0.25em
 ```
-
-![login](images/login-custom.png)
 
 # Syntax
 
