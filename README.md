@@ -29,35 +29,59 @@ $ npm install multifonts-loader
 ### Set `fonts` and `icons` into the MARKUP
 
 ```html
-<span class="font-Roboto-ThinItalic"></span>
-
-<span class="icon icon-arrow"></span>
-<span class="icon icon-arrow-after"></span>
+<button 
+  class="
+    icon 
+    icon-pig 
+    icon-arrow-after 
+    font-Roboto-BoldItalic"
+>
+&nbsp;Click Me&nbsp;
+</button>
 ```
+
+![button](images/button-click.png)
 
 ### Set `fonts` and `icons` with SASS
 
 ```sass
 @import 'fonts/fonts'
-
-div
-  @include webfont('Arial', 'bold', 'italic')
-  
-p
-  @include webfont('Roboto-ThinItalic')
-```
-
-```sass
 @import 'iconfont/iconfont'
-
-span
-  @include webfont-icon('calendar', 'before', 'middle', '16px', 'bold', 'italic')
+  
+button
+  @include webfont('Roboto-BoldItalic')
+  @include webfont-icon('chicken')
   @include webfont-icon('arrow', 'after')
 ```
 
-## Usage
+![button](images/button-follow.png)
 
-### `Inject classes into the markup`
+
+### Customize `fonts` and `icons` with SASS
+
+```sass
+@import 'fonts/fonts'
+@import 'iconfont/iconfont'
+
+h1
+  @include webfont('Arial', 'bold', 'italic')
+
+label
+  @include webfont('Helvetica-Bold')
+
+input
+  @include webfont('Roboto-LightItalic')
+
+button
+  @include webfont('Roboto-BoldItalic')
+  @include webfont-icon('lock', 'before', 'middle', '20px', 'bold', 'normal')
+```
+
+![login](images/login-custom.png)
+
+## Syntax
+
+### Set `fonts` and `icons` into the MARKUP
 
 #### `*.html`
 
@@ -94,11 +118,9 @@ By default the icon will be added `before`.
 | **`SVG_FILE_NAME`**                       | `true`   | ''      | Specifies the icon name                  |
 
 
-### `Import the scss files and use the mixins`
+### Set `fonts` and `icons` with SASS
 
 #### Mixin: `webfont`
-
-#### `*.sass`
 
 ```sass
 @include webfont('FONT_FILE_NAME', 'FONT_WEIGHT', 'FONT_STYLE')
@@ -116,7 +138,7 @@ p
   @include webfont('Roboto-ThinItalic')
 ```
 
-#### Options
+##### Options
 
 | Name                 | Required | Default  | Type           | Description                                                                                                          |
 |----------------------|----------|----------|----------------|----------------------------------------------------------------------------------------------------------------------|
@@ -126,8 +148,6 @@ p
 
 
 #### Mixin: `webfont-icon`
-
-#### `*.sass`
 
 ```sass
 @include webfont-icon('SVG_FILE_NAME', 'ICON_POSITION', 'ICON_ALIGN', 'ICON_SIZE', 'ICON_WEIGHT', 'ICON_STYLE')
@@ -143,7 +163,7 @@ span
   @include webfont-icon('arrow', 'after')
 ```
 
-#### Options
+##### Options
 
 | Name                | Required | Default   | Type              | Description                                                                |
 |---------------------|----------|-----------|-------------------|----------------------------------------------------------------------------|
