@@ -260,7 +260,7 @@ respective iconfonts.
 Optionally, you can decide to generate the iconfont CSS and/or the SCSS 
 files to a specified location for you to include in your application. 
 
-## Webpack Setup
+# Webpack Setup
 
 ### Webpack Rule
 
