@@ -26,7 +26,7 @@ $ npm install multifonts-loader
 
 ## Use Cases
 
-### Set `fonts` and `icons` into the MARKUP
+## Set `fonts` and `icons` into the MARKUP
 
 ```html
 <button 
@@ -42,7 +42,7 @@ $ npm install multifonts-loader
 
 ![button](images/button-click.png)
 
-### Set `fonts` and `icons` with SASS
+## Set `fonts` and `icons` with SASS
 
 ```sass
 @import 'fonts/fonts'
@@ -57,7 +57,7 @@ button
 ![button](images/button-follow.png)
 
 
-### Customize `fonts` and `icons` with SASS
+## Customize `fonts` and `icons` with SASS
 
 ```sass
 @import 'fonts/fonts'
@@ -81,7 +81,7 @@ button
 
 ## Syntax
 
-### Set `fonts` and `icons` into the MARKUP
+## Set `fonts` and `icons` into the MARKUP
 
 #### `*.html`
 
@@ -118,7 +118,7 @@ By default the icon will be added `before`.
 | **`SVG_FILE_NAME`**                       | `true`   | ''      | Specifies the icon name                  |
 
 
-### Set `fonts` and `icons` with SASS
+## Set `fonts` and `icons` with SASS
 
 #### Mixin: `webfont`
 
@@ -266,7 +266,7 @@ files to a specified location for you to include in your application.
 
 ```javascript
 {
-  test: /multifonts\.loader\.js/,
+  test: /multifonts\.loader\.js/, // This is the name of the loader configuration file
   use: [
     MiniCssExtractPlugin.loader,
     'css-loader',
@@ -295,7 +295,7 @@ See below [icons webpack-multifonts-loader#cssdest](#cssdest-1)
 
 See below [icons webpack-multifonts-loader#scssdest](#scssdest-1)
 
-#### Loader Options
+### Loader Options
 
 Extend the loader configuration by including all the available options
 directly into the rule definition.
