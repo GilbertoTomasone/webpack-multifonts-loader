@@ -2,7 +2,6 @@
 [![npm][npm-download]][npm-url]
 [![Travis][travis-build]][travis-url]
 [![license][license]][license-url]
-[![size][size]][size-url]
 
 [npm-version]: https://img.shields.io/npm/v/multifonts-loader.svg?style=flat-square
 [npm-download]: https://img.shields.io/npm/dm/multifonts-loader.svg?style=flat-square
